@@ -1,0 +1,12 @@
+.book {
+  background-color: #e6a43b;
+  width: 150px;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 6px 6px 12px #af7517; /* shadow effect */
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  font-size: large;
+}

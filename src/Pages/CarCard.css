@@ -1,0 +1,59 @@
+.car-pic {
+  position: relative;
+  left: 300px;
+}
+
+.car-head {
+  position: relative;
+  bottom: 60px;
+  right: 100px;
+}
+
+.vertical-line {
+  position: relative;
+  right: 600px;
+  top: 50px;
+}
+
+.car-size {
+  height: 400px;
+  width: 800px;
+  position: relative;
+  right: 50px;
+  bottom: 100px;
+}
+
+.car-content {
+  position: relative;
+  left: 150px;
+  bottom: 200px;
+}
+
+.car-headings {
+  position: relative;
+  bottom: 80px;
+}
+
+.car-three {
+  position: relative;
+  bottom: 80px;
+  left: 50px;
+}
+
+.cars {
+  position: relative;
+  top: 20px;
+}
+
+.line {
+  position: relative;
+  top: 20px;
+}
+
+@media (max-width: 768px) {
+  .car-size {
+    position: relative;
+    left: 10px;
+    width: 100%;
+  }
+}
