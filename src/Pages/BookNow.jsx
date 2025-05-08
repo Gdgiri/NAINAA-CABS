@@ -12,7 +12,6 @@ const BookNow = () => {
   const farePerKm = 25;
   const calculatedFare = km && !isNaN(km) ? km * farePerKm : "";
 
-  // Fetch location suggestions from OpenStreetMap
   const fetchSuggestions = async (query, setSuggestions) => {
     if (query.length < 2) return;
     try {
@@ -26,7 +25,6 @@ const BookNow = () => {
     }
   };
 
-  // Function to calculate distance using OpenRouteService API
   const calculateDistance = async (pickup, drop) => {
     if (!pickup || !drop) return;
 
@@ -37,23 +35,28 @@ const BookNow = () => {
       const { lat: pickupLat, lon: pickupLon } = pickupCoordinates;
       const { lat: dropLat, lon: dropLon } = dropCoordinates;
 
-      // OpenRouteService API URL
-      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=YOUR_API_KEY&start=${pickupLon},${pickupLat}&end=${dropLon},${dropLat}`;
+      const url = `https://api.openrouteservice.org/v2/directions/driving-car?api_key=5b3ce3597851110001cf6248a71b43ef8d5e46c5ae743e031954202f&start=${pickupLon},${pickupLat}&end=${dropLon},${dropLat}`;
 
       try {
         const response = await fetch(url);
         const data = await response.json();
-        const distance = data.routes[0].segments[0].distance / 1000; // distance in kilometers
-        if (distance) {
-          setKm(distance.toFixed(2)); // Update the km state
+
+        if (data.routes && data.routes.length > 0) {
+          const distance = data.routes[0].segments[0].distance / 1000;
+          const roundedDistance = distance.toFixed(2);
+          setKm(roundedDistance);
+          console.log(`Calculated Distance: ${roundedDistance} km`);
+        } else {
+          console.warn("No route found between the selected locations.");
+          setKm(""); // Reset km if no route
         }
       } catch (error) {
         console.error("Error calculating distance:", error);
+        setKm(""); // Reset km on error
       }
     }
   };
 
-  // Function to get coordinates for a location
   const getCoordinates = async (location) => {
     const response = await fetch(
       `https://nominatim.openstreetmap.org/search?format=json&q=${location}`
@@ -62,7 +65,6 @@ const BookNow = () => {
     return data.length > 0 ? { lat: data[0].lat, lon: data[0].lon } : null;
   };
 
-  // Debounced pickup suggestion
   useEffect(() => {
     const timeout = setTimeout(() => {
       fetchSuggestions(pickupLocation, setPickupSuggestions);
@@ -70,7 +72,6 @@ const BookNow = () => {
     return () => clearTimeout(timeout);
   }, [pickupLocation]);
 
-  // Debounced drop suggestion
   useEffect(() => {
     const timeout = setTimeout(() => {
       fetchSuggestions(dropLocation, setDropSuggestions);
@@ -78,14 +79,12 @@ const BookNow = () => {
     return () => clearTimeout(timeout);
   }, [dropLocation]);
 
-  // Watch for changes in pickup and drop locations and calculate the distance
   useEffect(() => {
     if (pickupLocation && dropLocation) {
       calculateDistance(pickupLocation, dropLocation);
     }
   }, [pickupLocation, dropLocation]);
 
-  // Geolocation to get current location
   const handleAutoLocate = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(async (position) => {
@@ -97,6 +96,7 @@ const BookNow = () => {
           );
           const data = await res.json();
           setPickupLocation(data.display_name || "Location not found");
+          console.log("location is:", data);
         } catch (error) {
           console.error("Error fetching current location:", error);
           setPickupLocation("Unable to fetch location");
@@ -122,7 +122,6 @@ const BookNow = () => {
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center mt-44">
         <div className="bg-white bg-opacity-30 p-8 rounded-xl shadow-lg backdrop-blur-md max-w-4xl mx-auto">
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-            {/* Name */}
             <div>
               <label className="text-sm font-medium text-gray-700">Name</label>
               <input
@@ -132,7 +131,6 @@ const BookNow = () => {
               />
             </div>
 
-            {/* Mobile */}
             <div>
               <label className="text-sm font-medium text-gray-700">
                 Mobile Number <span className="text-red-500">*</span>
@@ -144,7 +142,6 @@ const BookNow = () => {
               />
             </div>
 
-            {/* Pickup with auto-locate and suggestion */}
             <div className="relative">
               <label className="text-sm font-medium text-gray-700">
                 Pickup Location
@@ -153,10 +150,16 @@ const BookNow = () => {
                 type="text"
                 value={pickupLocation}
                 onChange={(e) => setPickupLocation(e.target.value)}
-                placeholder="Enter pickup location "
+                placeholder="Enter pickup location"
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md"
               />
-
+              <button
+                type="button"
+                onClick={handleAutoLocate}
+                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-blue-500 text-white text-xs px-2 py-1 rounded"
+              >
+                Use My Location
+              </button>
               {pickupSuggestions.length > 0 && (
                 <ul className="absolute z-50 bg-white border border-gray-300 mt-1 w-full max-h-40 overflow-auto rounded shadow">
                   {pickupSuggestions.map((suggestion, index) => (
@@ -175,7 +178,6 @@ const BookNow = () => {
               )}
             </div>
 
-            {/* Drop with suggestion */}
             <div className="relative">
               <label className="text-sm font-medium text-gray-700">
                 Drop Location
@@ -205,7 +207,6 @@ const BookNow = () => {
               )}
             </div>
 
-            {/* Date & Time */}
             <div className="col-span-1 md:col-span-2 flex flex-wrap gap-4">
               <div className="flex-1">
                 <label className="text-sm font-medium text-gray-700">
@@ -218,7 +219,6 @@ const BookNow = () => {
               </div>
             </div>
 
-            {/* Trip Type */}
             <div>
               <label className="text-sm font-medium text-gray-700">
                 Trip type <span className="text-red-500">*</span>
@@ -230,7 +230,6 @@ const BookNow = () => {
               </select>
             </div>
 
-            {/* KM */}
             <div>
               <label className="text-sm font-medium text-gray-700">
                 Distance (in KM)
@@ -239,11 +238,11 @@ const BookNow = () => {
                 type="text"
                 value={km || ""}
                 placeholder="Distance will be calculated"
+                readOnly
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md"
               />
             </div>
 
-            {/* Fare */}
             <div className="md:col-span-2">
               <label className="text-sm font-medium text-gray-700">
                 Trip Fare
@@ -257,11 +256,10 @@ const BookNow = () => {
               />
             </div>
 
-            {/* Submit */}
             <div className="col-span-1 md:col-span-2 text-center mt-4">
               <button
                 type="submit"
-                className="book px-8 py-2 bg-[#2E709E] text-white font-semibold rounded-full hover:bg-blue-900 "
+                className="book px-8 py-2 bg-[#2E709E] text-white font-semibold rounded-full hover:bg-blue-900"
               >
                 Book
               </button>
