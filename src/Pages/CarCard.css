@@ -48,40 +48,38 @@
 .line {
   position: relative;
   top: 20px;
+  
 }
 
 @media (max-width: 768px) {
   .car-size {
     position: relative;
     left: 10px;
+    width: 300px;
   }
 
-  .second{
+  .second {
     position: relative;
     right: 21px;
   }
 
-  .third{
+  .third {
     position: relative;
     left: 7px;
   }
 
-  .fourth{
+  .fourth {
     position: relative;
     right: 1px;
   }
 
-  .fifth{
+  .fifth {
     position: relative;
     right: 16px;
   }
 
-  .sixth{
+  .sixth {
     position: relative;
     right: 14px;
   }
-
- 
-
-  
 }
