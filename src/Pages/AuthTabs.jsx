@@ -4,6 +4,7 @@ import OAuth from "../Components/OAuth"; // Your OAuth component
 import logo from "../assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
 import { Link } from "react-router-dom";
+import "../Pages/AuthTabs.css";
 
 const AuthTabs = () => {
   const [activeTab, setActiveTab] = useState("login");
@@ -101,9 +102,16 @@ const AuthTabs = () => {
           <div className="text-center mb-6 justify-center flex items-center">
             <img src={logo} alt="logo" className="w-44" />
           </div>
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
-            {activeTab === "login" ? "Welcome Back!" : "Join Us Today!"}
+          <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
+            {activeTab === "login" ? (
+              <>
+                Welcome Back <span className="wave">👋</span>
+              </>
+            ) : (
+              <>Join Us Today!</>
+            )}
           </h2>
+
           <OAuth
             buttonText={
               activeTab === "login"
