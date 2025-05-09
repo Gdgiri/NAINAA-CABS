@@ -54,6 +54,34 @@
   .car-size {
     position: relative;
     left: 10px;
-    width: 100%;
   }
+
+  .second{
+    position: relative;
+    right: 21px;
+  }
+
+  .third{
+    position: relative;
+    left: 7px;
+  }
+
+  .fourth{
+    position: relative;
+    right: 1px;
+  }
+
+  .fifth{
+    position: relative;
+    right: 16px;
+  }
+
+  .sixth{
+    position: relative;
+    right: 14px;
+  }
+
+ 
+
+  
 }

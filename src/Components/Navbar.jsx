@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { FiMenu, FiX } from "react-icons/fi"; // Icons for toggle
 import "../Components/Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/auth");
+  };
 
   return (
     <div className="bg-white nav">
@@ -36,7 +42,7 @@ const Navbar = () => {
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-2xl text-red-500 toogle"
+            className="text-2xl text-[#2E709E] toogle"
           >
             {menuOpen ? <FiX /> : <FiMenu />}
           </button>
@@ -55,7 +61,10 @@ const Navbar = () => {
               </a>
             ))}
           </div>
-          <button className=" text-white px-6 py-2 rounded-lg  login">
+          <button
+            className=" text-white px-6 py-2 rounded-lg  login"
+            onClick={handleClick}
+          >
             Login
           </button>
         </div>
@@ -68,7 +77,7 @@ const Navbar = () => {
             <a
               key={text}
               href="#"
-              className="text-gray-700 font-extrabold hover:text-red-500  hover:decoration-2 menus-link "
+              className="text-[#2E709E] font-extrabold hover:text-[#2E709E]  hover:decoration-2 menus-link "
             >
               {text}
             </a>

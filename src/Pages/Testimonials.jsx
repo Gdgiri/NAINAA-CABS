@@ -36,7 +36,7 @@ export default function TestimonialsSection() {
             className="relative bg-[#2E709E] text-white rounded-2xl rounded-br-[100px] p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)] text-left"
           >
             {/* Quote icon */}
-            <FaQuoteLeft className="absolute -top-3 -left-3 text-yellow-400 text-3xl" />
+            <FaQuoteLeft className="absolute -top-3 -left-3 text-[#E6A43B] text-3xl" />
 
             {/* Testimonial */}
             <p className="mb-6 text-sm leading-relaxed">{t.text}</p>

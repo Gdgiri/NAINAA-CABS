@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import bg from "../assets/carbg.jpg";
+import "react-time-picker/dist/TimePicker.css";
 import "./BookNow.css";
 
 const BookNow = () => {
+  const [time, setTime] = useState("");
+  const [amPm, setAmPm] = useState("AM"); // AM/PM state
   const [km, setKm] = useState("");
   const [pickupLocation, setPickupLocation] = useState("");
   const [pickupSuggestions, setPickupSuggestions] = useState([]);
   const [dropLocation, setDropLocation] = useState("");
   const [dropSuggestions, setDropSuggestions] = useState([]);
+  const [currentDate, setCurrentDate] = useState("");
 
   const farePerKm = 25;
   const calculatedFare = km && !isNaN(km) ? km * farePerKm : "";
@@ -66,11 +70,19 @@ const BookNow = () => {
   };
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      fetchSuggestions(pickupLocation, setPickupSuggestions);
-    }, 500);
-    return () => clearTimeout(timeout);
-  }, [pickupLocation]);
+    const now = new Date();
+    const currentTime = now.toTimeString().split(" ")[0].slice(0, 5); // Get time in HH:mm format
+    setTime(currentTime); // Set current time as default value
+  }, []);
+
+  const handleTimeChange = (event) => {
+    const selectedTime = event.target.value;
+    setTime(selectedTime); // Update time when user selects a new time
+  };
+
+  const handleAmPmChange = (event) => {
+    setAmPm(event.target.value); // Update AM/PM value
+  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -85,32 +97,10 @@ const BookNow = () => {
     }
   }, [pickupLocation, dropLocation]);
 
-  const handleAutoLocate = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const { latitude, longitude } = position.coords;
-
-        try {
-          const res = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-          );
-          const data = await res.json();
-          setPickupLocation(data.display_name || "Location not found");
-          console.log("location is:", data);
-        } catch (error) {
-          console.error("Error fetching current location:", error);
-          setPickupLocation("Unable to fetch location");
-        }
-      });
-    } else {
-      alert("Geolocation is not supported by your browser.");
-    }
-  };
-
   return (
     <section className="relative bg-white py-20">
       <div className="text-center z-20 relative mb-10">
-        <h2 className="text-4xl font-semibold text-[#2E709E]">Book Now</h2>
+        <h2 className="text-5xl font-semibold text-[#2E709E]">Book Now</h2>
         <div className="w-36 h-1 mx-auto mt-2 bg-[#E6A43B] rounded-full"></div>
       </div>
 
@@ -123,7 +113,7 @@ const BookNow = () => {
         <div className="bg-white bg-opacity-30 p-8 rounded-xl shadow-lg backdrop-blur-md max-w-4xl mx-auto">
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
             <div>
-              <label className="text-sm font-medium text-gray-700">Name</label>
+              <label className="text-sm font-medium text-gray-800">Name</label>
               <input
                 type="text"
                 placeholder="Enter name"
@@ -132,7 +122,7 @@ const BookNow = () => {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-800">
                 Mobile Number <span className="text-red-500">*</span>
               </label>
               <input
@@ -143,7 +133,7 @@ const BookNow = () => {
             </div>
 
             <div className="relative">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-800">
                 Pickup Location
               </label>
               <input
@@ -153,13 +143,6 @@ const BookNow = () => {
                 placeholder="Enter pickup location"
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md"
               />
-              <button
-                type="button"
-                onClick={handleAutoLocate}
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-blue-500 text-white text-xs px-2 py-1 rounded"
-              >
-                Use My Location
-              </button>
               {pickupSuggestions.length > 0 && (
                 <ul className="absolute z-50 bg-white border border-gray-300 mt-1 w-full max-h-40 overflow-auto rounded shadow">
                   {pickupSuggestions.map((suggestion, index) => (
@@ -179,7 +162,7 @@ const BookNow = () => {
             </div>
 
             <div className="relative">
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-800">
                 Drop Location
               </label>
               <input
@@ -208,19 +191,44 @@ const BookNow = () => {
             </div>
 
             <div className="col-span-1 md:col-span-2 flex flex-wrap gap-4">
-              <div className="flex-1">
-                <label className="text-sm font-medium text-gray-700">
-                  Pickup Date & Time <span className="text-red-500">*</span>
-                </label>
+              <label className="text-sm font-medium text-gray-800 relative top-4">
+                Pickup Date & Time <span className="text-red-500">*</span>
+              </label>
+              <div className="flex flex-col md:flex-row gap-6 w-full">
+                {/* Date Picker */}
                 <input
-                  type="datetime-local"
-                  className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+                  type="date"
+                  value={currentDate}
+                  onChange={(e) => setCurrentDate(e.target.value)}
+                  min={new Date().toISOString().split("T")[0]} // Disables past dates
+                  className="w-[170px] md:w-[400px] mt-1 p-2 border border-gray-300 rounded-md"
                 />
+
+                {/* Time Input */}
+                <div className="flex items-center gap-2">
+                  <input
+                    type="time"
+                    id="pickup-time"
+                    value={time}
+                    onChange={handleTimeChange}
+                    className="time-input w-[120px] md:[200px] mt-1 p-2 border border-gray-300 rounded-md"
+                  />
+
+                  {/* AM/PM Dropdown */}
+                  <select
+                    value={amPm}
+                    onChange={handleAmPmChange}
+                    className="p-2 border border-gray-300 rounded-md"
+                  >
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
               </div>
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-800">
                 Trip type <span className="text-red-500">*</span>
               </label>
               <select className="w-full mt-1 p-2 border border-gray-300 rounded-md">
@@ -231,21 +239,8 @@ const BookNow = () => {
             </div>
 
             <div>
-              <label className="text-sm font-medium text-gray-700">
-                Distance (in KM)
-              </label>
-              <input
-                type="text"
-                value={km || ""}
-                placeholder="Distance will be calculated"
-                readOnly
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="text-sm font-medium text-gray-700">
-                Trip Fare
+              <label className="text-sm font-medium text-gray-800">
+                Estimate Fare
               </label>
               <input
                 type="text"
@@ -261,7 +256,7 @@ const BookNow = () => {
                 type="submit"
                 className="book px-8 py-2 bg-[#2E709E] text-white font-semibold rounded-full hover:bg-blue-900"
               >
-                Book
+                Book Now
               </button>
             </div>
           </form>

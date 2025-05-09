@@ -25,14 +25,14 @@ const Footer = () => {
             </h2>
           </div>
           <p className="text-sm leading-relaxed">
-            At Nainaa Cabs, we provide reliable, comfortable and affordable car
-            rental solutions for every journey – driven by a passion for travel,
+            At Nainaa Cabs, we provide premium, comfortable and affordable Cab
+            Services for every journey – driven by a passion for travel,
             customer satisfaction, and unmatched service quality.
           </p>
         </div>
 
         {/* Links */}
-        <div>
+        <div className="ml-24">
           <h3 className="font-semibold text-lg mb-3">Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -59,7 +59,7 @@ const Footer = () => {
         </div>
 
         {/* Guides */}
-        <div>
+        <div className="ml-14">
           <h3 className="font-semibold text-lg mb-3">Guides</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -81,14 +81,14 @@ const Footer = () => {
         </div>
 
         {/* Contact */}
-        <div>
+        <div className="ml-14">
           <h3 className="font-semibold text-lg mb-3">Contact</h3>
           <p className="text-sm">Soundarrajan R</p>
-          <p className="text-sm">13/2, Sathya Nagar,</p>
-          <p className="text-sm">Melur Road, Srirangam,</p>
-          <p className="text-sm">Tiruchirappalli - 620006</p>
+          <p className="text-sm">21/A, Raghavendrapuram, </p>
+          <p className="text-sm">Srirangam,Thiruchirapalli,</p>
+          <p className="text-sm">India, Tamilnadu.</p>
           <p className="text-sm mt-2">Phone: +91 88077 18563</p>
-          <p className="text-sm">+91 93600 55963</p>
+          <p className="text-sm ml-[47px]">+91 93600 55963</p>
 
           {/* Social Icons */}
           <div className="flex gap-3 mt-5">

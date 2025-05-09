@@ -187,7 +187,7 @@ export default function CarCard() {
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 md:py-16 lg:py-24 bg-white">
       {/* Title */}
       <div className="text-center mb-10 mt-10 md:mt-20">
-        <h2 className="text-[#2E709E] text-3xl md:text-4xl lg:text-5xl font-bold">
+        <h2 className="text-[#2E709E] text-5xl md:text-4xl lg:text-5xl font-bold">
           Our Cars
         </h2>
         <div className="h-1 w-20 bg-[#E6A43B] mx-auto my-4 rounded"></div>
@@ -206,13 +206,13 @@ export default function CarCard() {
             Mahindra XUV700 AX7L
           </h1>
 
-          <ul className="list-disc list-inside text-base md:text-lg text-[#2E709E] space-y-2">
-            <li>Adas control</li>
-            <li>Sun roof</li>
-            <li>Ventilator seat</li>
-            <li>Alexa control</li>
-            <li>In car TVs</li>
-            <li>6+1 seater</li>
+          <ul className="list-disc list-inside text-base md:text-lg text-[#2E709E] space-y-2 cars">
+            <li className="first">Adas control</li>
+            <li className="second">Sun roof</li>
+            <li className="third">Ventilator seat</li>
+            <li className="fourth">Alexa control</li>
+            <li className="fifth">In car TVs</li>
+            <li className="sixth">6+1 seater</li>
           </ul>
         </div>
 
