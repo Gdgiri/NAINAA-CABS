@@ -67,11 +67,7 @@ const Footer = () => {
                 Connect Us
               </a>
             </li>
-            <li>
-              <a href="#" className="hover:underline">
-                FAQ
-              </a>
-            </li>
+
             <li>
               <a href="#" className="hover:underline">
                 Help

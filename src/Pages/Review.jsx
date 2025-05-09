@@ -73,7 +73,7 @@ const Review = () => {
             setReviewData({ ...reviewData, tripExperience: e.target.value })
           }
         />
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+        <button className="bg-[#2E709E] text-white px-4 py-2 rounded-lg hover:bg-[#2185cc]">
           Submit Review
         </button>
       </div>

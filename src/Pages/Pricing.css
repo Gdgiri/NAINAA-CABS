@@ -3,11 +3,21 @@
   bottom: 200px;
 }
 
+.card-hover {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-hover:hover {
+  transform: rotateX(10deg) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
 @media (max-width: 425px) {
   .abover-card {
     position: relative;
     top: 20px;
     left: 0px;
-    width: 100%;    
+    width: 100%;
   }
 }

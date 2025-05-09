@@ -3,6 +3,7 @@ import axios from "axios";
 import OAuth from "../Components/OAuth"; // Your OAuth component
 import logo from "../assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
+import { Link } from "react-router-dom";
 
 const AuthTabs = () => {
   const [activeTab, setActiveTab] = useState("login");
@@ -98,9 +99,9 @@ const AuthTabs = () => {
         {/* Form Section */}
         <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
           <div className="text-center mb-6 justify-center flex items-center">
-            <img src={logo} alt="logo" className="w-32" />
+            <img src={logo} alt="logo" className="w-44" />
           </div>
-          <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
+          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
             {activeTab === "login" ? "Welcome Back!" : "Join Us Today!"}
           </h2>
           <OAuth
@@ -193,13 +194,14 @@ const AuthTabs = () => {
               >
                 Login
               </button>
-              <a
-                href="/forgot"
+
+              <Link
+                to="/forgot"
                 className="text-blue-500 hover:text-blue-700 text-sm font-semibold relative top-2"
                 title="Click to reset your password"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </form>
           ) : (
             <form onSubmit={handleRegister} className="space-y-5">

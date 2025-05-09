@@ -254,7 +254,7 @@ const BookNow = () => {
             <div className="col-span-1 md:col-span-2 text-center mt-4">
               <button
                 type="submit"
-                className="book px-8 py-2 bg-[#2E709E] text-white font-semibold rounded-full hover:bg-blue-900"
+                className="book px-8 py-2 bg-[#2E709E] text-white font-semibold rounded-full "
               >
                 Book Now
               </button>

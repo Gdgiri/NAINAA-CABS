@@ -13,7 +13,7 @@ const Pricing = () => {
       {/* Row with both cards */}
       <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-10">
         {/* Below 250 KM card */}
-        <div className="bg-white border rounded-lg shadow-lg w-72 h-[470px] transform translate-y-0">
+        <div className="bg-white border rounded-lg shadow-2xl w-72 h-[470px] transform translate-y-0 card-hover">
           <div className="mt-5 ml-4">
             <h1 className="text-2xl font-bold text-gray-700">Below</h1>
           </div>
@@ -86,7 +86,7 @@ const Pricing = () => {
         </div>
 
         {/* Above 250 KM card - shifted up */}
-        <div className="bg-white border rounded-lg shadow-2xl w-72 h-[470px] transform -translate-y-4 sm-mt-4 ">
+        <div className="bg-white border rounded-lg shadow-2xl w-72 h-[470px] card-hover">
           <div className="mt-5 ml-4 ">
             <h3 className="text-2xl font-bold text-[#E6A43B]">Above</h3>
           </div>

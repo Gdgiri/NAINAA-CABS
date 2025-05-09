@@ -1,21 +1,20 @@
 .book {
-  background-color: #2E709E;
+  background-color: #2e709e;
   width: 150px;
   color: white;
   padding: 10px 24px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 6px 6px 12px #2E709E; /* shadow effect */
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
   font-size: large;
 }
 
 .book:hover {
-  background-color: #1E4D7A; /* darker shade on hover */
-  box-shadow: 8px 8px 16px #2E709E; /* deeper shadow effect on hover */
+  background-color: #1e4d7a; /* darker shade on hover */
+  box-shadow: 2px 2px 8px #2e709e; /* deeper shadow effect on hover */
 }
 .book:active {
-  box-shadow: 4px 4px 8px #2E709E; /* reduced shadow effect on click */
+  box-shadow: 4px 4px 8px #2e709e; /* reduced shadow effect on click */
   transform: translateY(2px); /* slight downward movement on click */
 }
