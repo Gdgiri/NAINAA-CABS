@@ -17,6 +17,7 @@ import Review from "./Pages/Review";
 import VerificationPage from "./Pages/VerificationPage";
 import UpdatePassword from "./Pages/ConfirmPassword";
 import PasswordResetSuccess from "./Pages/PasswordResetSuccess";
+import Profile from "./Pages/Profile";
 
 const App = () => {
   const location = useLocation();
@@ -28,6 +29,8 @@ const App = () => {
     location.pathname === "/verify" ||
     location.pathname === "/confirm" ||
     location.pathname === "/success" ||
+    location.pathname === "/profile" ||
+    location.pathname === "/bookings" ||
     location.pathname.startsWith("/reset");
 
   return (
@@ -43,6 +46,8 @@ const App = () => {
         <Route path="/verify" element={<VerificationPage />} />
         <Route path="/confirm" element={<UpdatePassword />} />
         <Route path="/success" element={<PasswordResetSuccess />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/bookings" element={<Bookings />} />
         <Route path="/reset/:resetToken" element={<ResetPassword />} />
       </Routes>
 
@@ -50,8 +55,6 @@ const App = () => {
       {!isAuthRoute && (
         <>
           <About />
-          <Bookings />
-          <Review />
           <Pricing />
           <BookNow />
           <CarCard />

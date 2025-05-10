@@ -44,7 +44,7 @@ const ResetPassword = () => {
       setCardShadow("shadow-lg shadow-green-500");
 
       setTimeout(() => {
-        navigate("/"); // Redirect to login page after successful reset
+        navigate("/success"); // Redirect to login page after successful reset
       }, 3000);
     } catch (err) {
       setMessage(err.response?.data?.message || "Something went wrong.");
@@ -63,7 +63,7 @@ const ResetPassword = () => {
         {/* Right Image Section */}
         <div className="hidden md:block md:w-1/2">
           <img
-            src="https://media.istockphoto.com/id/1466934131/vector/vector-of-a-stressed-overworked-doctor-sitting-at-a-desk-in-his-office.jpg?s=612x612&w=0&k=20&c=aVN7e7nIIZFcdUF0bpRCS0NdF9AJGogmfkJJMuvEGYc="
+            src="https://t3.ftcdn.net/jpg/02/90/63/42/360_F_290634295_q41L3Ni6IR9q7i6YNx2XKzpMm5Ym45Ol.jpg"
             alt="Reset Password Illustration"
             className="h-full w-full object-cover"
           />
@@ -97,13 +97,24 @@ const ResetPassword = () => {
               required
               className="w-full px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1f8acd]"
             />
+              {message && (
+            <div
+              className={`text-center mb-4 font-medium p-4 rounded-lg transition-all duration-300 ${
+                messageType === "success"
+                  ? "bg-green-100 border border-green-400 shadow-lg shadow-green-300 text-green-600"
+                  : "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
+              }`}
+            >
+              {message}
+            </div>
+          )}
             <button
               type="submit"
               disabled={loading}
               className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl transition duration-300 ${
                 loading
                   ? "bg-gray-400 cursor-not-allowed text-white"
-                  : "bg-[#47c968] hover:bg-green-600 text-white"
+                  : "bg-[#2E709E] hover:bg-[#378dca] text-white"
               }`}
             >
               {loading && (
@@ -132,17 +143,7 @@ const ResetPassword = () => {
             </button>
           </form>
 
-          {message && (
-            <div
-              className={`text-center mb-4 font-medium p-4 rounded-lg transition-all duration-300 ${
-                messageType === "success"
-                  ? "bg-green-100 border border-green-400 shadow-lg shadow-green-300 text-green-600"
-                  : "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
-              }`}
-            >
-              {message}
-            </div>
-          )}
+        
         </div>
       </div>
     </div>

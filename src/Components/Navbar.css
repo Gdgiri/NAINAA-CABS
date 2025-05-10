@@ -125,6 +125,11 @@
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2); /* pressed shadow */
 }
 
+
+.logo-image{
+  width: 200px;
+}
+
 @media (width: 1024px) {
   .logo {
     position: relative;
@@ -159,6 +164,8 @@
     position: relative;
     left: 30px;
   }
+
+  
 }
 
 @media (width: 1440px) {

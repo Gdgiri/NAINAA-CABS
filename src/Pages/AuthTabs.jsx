@@ -1,32 +1,51 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import OAuth from "../Components/OAuth"; // Your OAuth component
+import OAuth from "../Components/OAuth";
 import logo from "../assets/logo.png";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons from react-icons
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import register from "../assets/register.jpg";
+import login from "../assets/login.jpg";
+import useSIgnInHook from "../CustomHook/UseSigninHook";
 import "../Pages/AuthTabs.css";
 
 const AuthTabs = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+    phone: "",
     password: "",
-    confirmpassword: "", // Add the confirm password field to the state
+    confirmpassword: "",
   });
+  const { code, loading, signin } = useSIgnInHook();
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState(""); // "success" or "error"
-  const [messageVisible, setMessageVisible] = useState(true); // To control message visibility
-  const [cardShadow, setCardShadow] = useState("shadow-lg shadow-gray-300"); // Default shadow
-  const [passwordVisible, setPasswordVisible] = useState(false); // State to toggle password visibility
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); // State to toggle confirm password visibility
+  const [messageType, setMessageType] = useState("");
+  const [messageVisible, setMessageVisible] = useState(true);
+  const [cardShadow, setCardShadow] = useState("shadow-lg shadow-gray-300");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const clearForm = () => {
-    setFormData({ username: "", email: "", password: "", confirmpassword: "" });
+    setFormData({
+      emailOrPhone: "", 
+      username: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmpassword: "",
+    });
   };
 
   const handleLogin = async (e) => {
@@ -34,24 +53,26 @@ const AuthTabs = () => {
     setMessage("");
     setMessageVisible(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
-        email: formData.email,
-        password: formData.password,
-      });
+      await signin(formData.emailOrPhone, formData.password);
       setMessage("Login successful!");
       setMessageType("success");
       setCardShadow("shadow-lg shadow-green-500"); // Set success shadow
+
+      // Navigate after the success message timeout
       setTimeout(() => {
         setMessageVisible(false);
         setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
+        navigate("/"); // Navigate after the message timeout
       }, 3000); // Hide message and reset shadow after 3 seconds
+
       clearForm();
-      console.log(res.data);
+      // console.log(res.data);
     } catch (err) {
       console.error(err);
       setMessage("Login failed. Please check your credentials.");
       setMessageType("error");
       setCardShadow("shadow-lg shadow-red-500"); // Set error shadow
+
       setTimeout(() => {
         setMessageVisible(false);
         setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
@@ -67,7 +88,9 @@ const AuthTabs = () => {
       const res = await axios.post("http://localhost:5000/api/auth/register", {
         username: formData.username,
         email: formData.email,
+        phone: formData.phone,
         password: formData.password,
+        confirmpassword: formData.confirmpassword,
       });
       setMessage("Registration successful!");
       setMessageType("success");
@@ -87,6 +110,11 @@ const AuthTabs = () => {
         setMessageVisible(false);
         setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
       }, 3000); // Hide message and reset shadow after 3 seconds
+    }
+    if (formData.password !== formData.confirmpassword) {
+      setMessage("Passwords do not match.");
+      setMessageType("error");
+      return;
     }
   };
 
@@ -170,14 +198,15 @@ const AuthTabs = () => {
           {activeTab === "login" ? (
             <form onSubmit={handleLogin} className="space-y-5">
               <input
-                type="email"
-                name="email"
+                type="text"
+                name="emailOrPhone" // Changed from emailorphone to emailOrPhone
                 placeholder="Email or Phone Number"
-                value={formData.email}
+                value={formData.emailOrPhone} // Update state reference to match
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-800 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-300"
               />
+
               <div className="relative">
                 <input
                   type={passwordVisible ? "text" : "password"} // Toggle between text and password
@@ -311,11 +340,7 @@ const AuthTabs = () => {
         {/* Image Section */}
         <div className="hidden md:block md:w-1/2">
           <img
-            src={
-              activeTab === "login"
-                ? "https://images.pexels.com/photos/5976529/pexels-photo-5976529.jpeg"
-                : "https://miro.medium.com/v2/resize:fill:320:214/1*n0Aj0RHApFflQW22a53oew.jpeg"
-            }
+            src={activeTab === "login" ? `${login}` : `${register}`}
             alt="Auth Background"
             className="w-full h-full object-cover rounded-r-3xl"
           />

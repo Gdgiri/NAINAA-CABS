@@ -1,6 +1,6 @@
 import React from "react";
 import car from "../assets/car1.jpg";
-
+import aboutcar from "../assets/aboutcar.png";
 const About = () => {
   return (
     <section className=" py-16 px-6 lg:px-20">
@@ -50,11 +50,11 @@ const About = () => {
 
         {/* Right Image */}
         <div className="md:w-1/2 relative">
-          <div className="absolute -bottom-6 -right-6 w-full h-full bg-[#6a9dc0] -z-10 rounded-md"></div>
+          <div className="absolute -bottom-6 right-32 w-3/4 h-full bg-[#6a9dc0] -z-10 rounded-md"></div>
           <img
-            src={car} // Replace with your actual image URL
+            src={aboutcar} // Replace with your actual image URL
             alt="Nainaa Cabs Car"
-            className="w-full h-auto object-cover rounded-md shadow-lg"
+            className="w-3/4 h-auto object-cover rounded-md shadow-lg"
           />
         </div>
       </div>

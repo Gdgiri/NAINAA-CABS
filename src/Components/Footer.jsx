@@ -5,6 +5,7 @@ import {
   FaWhatsapp,
   FaEnvelope,
 } from "react-icons/fa";
+import lalogo from "../assets/la.jpg";
 import logo from "../assets/logo.jpg";
 
 const Footer = () => {
@@ -17,7 +18,7 @@ const Footer = () => {
             <img
               src={logo}
               alt="Nainaa Cabs"
-              className="w-16 h-16 object-cover rounded-full"
+              className="w-20 h-20 object-cover rounded-full"
             />
             <h2 className="text-2xl font-bold">
               <span className="text-[#E6A43B]">N</span>AINAA{" "}
@@ -104,8 +105,13 @@ const Footer = () => {
       </div>
 
       {/* Bottom Copyright */}
-      <div className="mt-10 border-t border-white pt-4 text-center text-sm">
-        © 2025 Nainaa Cabs. All rights reserved.
+      <div className="mt-10 border-t border-white pt-4 text-center text-sm text-white">
+        © 2025 LeastAction. All rights reserved. Powered by
+        <img
+          src={lalogo}
+          alt="LeasetAction Logo"
+          className="inline h-6 align-middle ml-1 rounded-full"
+        />
       </div>
     </footer>
   );

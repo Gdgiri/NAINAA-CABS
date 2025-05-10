@@ -35,8 +35,7 @@
 }
 
 .car {
-  width: 12000px;
-  height: 650px;
+  height: 600px;
   position: relative;
   bottom: 180px;
   right: 180px;
@@ -51,5 +50,9 @@
   .testominal {
     position: relative;
     right: 1%;
+  }
+
+  .start {
+    font-size: 35px;
   }
 }

@@ -4,6 +4,7 @@ import "../Pages/HeroSection.css";
 import { IoCarSportOutline } from "react-icons/io5";
 import { SlBadge } from "react-icons/sl";
 import car from "../assets/car1.png";
+import herocar from "../assets/herocar.png";
 
 const HeroSection = () => {
   return (
@@ -12,7 +13,7 @@ const HeroSection = () => {
         <div className="max-w-7xl mx-auto px-8 py-12 grid md:grid-cols-2 items-center  container">
           {/* Left Content */}
           <div className="md:ml-1">
-            <h1 className="text-6xl font-bold text-[#2E709e] mb-4">
+            <h1 className="text-6xl font-bold text-[#2E709e] mb-4 start">
               "Roads Awaits. let's <br />
               <span className="text-[#2E709e]">
                 Explore <span className="text-[#E6A43B]">Together</span>."
@@ -31,7 +32,7 @@ const HeroSection = () => {
           {/* Right Car Image */}
           <div className="back rounded-2xl">
             <div className="flex justify-center mt-8 md:mt-0">
-              <img src={car} alt="Red Car" className="car" />
+              <img src={herocar} alt="Red Car" className="car" />
             </div>
           </div>
         </div>

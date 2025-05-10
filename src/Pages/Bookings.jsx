@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Review from "./Review";
 
 const Bookings = () => {
   const [bookingData, setBookingData] = useState({
@@ -85,6 +86,8 @@ const Bookings = () => {
           </div>
         </div>
       </div>
+
+      <Review />
     </div>
   );
 };

@@ -74,7 +74,7 @@ import img69 from "../assets/69.png";
 import img70 from "../assets/70.png";
 import img71 from "../assets/71.png";
 import img72 from "../assets/72.png";
-
+import mycar from "../assets/mycar.png";
 const images = [
   img1,
   img2,
@@ -231,6 +231,11 @@ export default function CarCard() {
             alt={`360 view ${index}`}
             className="w-full object-contain"
           />
+          {/* <img
+            src={images[index]}
+            alt={`360 view ${index}`}
+            className="w-full object-contain"
+          /> */}
         </div>
       </div>
     </div>

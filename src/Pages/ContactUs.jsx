@@ -1,5 +1,6 @@
 import React from "react";
 import contact from "../assets/contact.jpg";
+import contactkey from "../assets/contactkey.jpg";
 
 const ContactUs = () => {
   return (
@@ -47,7 +48,7 @@ const ContactUs = () => {
           {/* Right: Image */}
           <div className="w-full md:w-1/2">
             <img
-              src={contact}
+              src={contactkey}
               alt="Contact Illustration"
               className="w-full h-full object-cover"
             />

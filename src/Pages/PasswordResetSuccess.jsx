@@ -11,7 +11,7 @@ const PasswordResetSuccess = () => {
   }, []);
 
   const handleContinue = () => {
-    navigate("/login"); // Replace with your route
+    navigate("/auth");
   };
 
   return (

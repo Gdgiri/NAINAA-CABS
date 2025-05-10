@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import bg from "../assets/carbg.jpg";
+import bgcar from "../assets/bookingbg.png";
 import "react-time-picker/dist/TimePicker.css";
 import "./BookNow.css";
 
@@ -106,7 +107,7 @@ const BookNow = () => {
 
       <div
         className="absolute inset-0 bg-cover bg-center blur-sm brightness-75 mt-44"
-        style={{ backgroundImage: `url(${bg})` }}
+        style={{ backgroundImage: `url(${bgcar})` }}
       ></div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center mt-44">
