@@ -30,8 +30,9 @@ const HeroSection = () => {
           </div>
 
           {/* Right Car Image */}
-          <div className="back rounded-2xl">
-            <div className="flex justify-center mt-8 md:mt-0">
+          {/* Only visible on medium and up screens */}
+          <div className="back rounded-2xl hidden md:block">
+            <div className="flex justify-center mt-8">
               <img src={herocar} alt="Red Car" className="car" />
             </div>
           </div>

@@ -218,7 +218,7 @@ export default function CarCard() {
 
         {/* Right: Image Display */}
         <div
-          className="relative w-full max-w-md lg:max-w-xl xl:max-w-2xl h-auto overflow-hidden flex justify-center items-center car-size"
+          className="relative w-full max-w-md lg:max-w-xl xl:max-w-2xl h-auto overflow-hidden flex justify-center items-center car-size hidden md:block"
           onWheel={(e) => {
             e.preventDefault();
             e.deltaY > 0 ? nextFrame() : prevFrame();

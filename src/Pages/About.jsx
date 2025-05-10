@@ -49,7 +49,7 @@ const About = () => {
         </div>
 
         {/* Right Image */}
-        <div className="md:w-1/2 relative">
+        <div className="md:w-1/2 relative hidden md:block">
           <div className="absolute -bottom-6 right-32 w-3/4 h-full bg-[#6a9dc0] -z-10 rounded-md"></div>
           <img
             src={aboutcar} // Replace with your actual image URL

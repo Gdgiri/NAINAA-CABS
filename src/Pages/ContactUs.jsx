@@ -46,7 +46,7 @@ const ContactUs = () => {
           </div>
 
           {/* Right: Image */}
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2 hidden md:block relative">
             <img
               src={contactkey}
               alt="Contact Illustration"
