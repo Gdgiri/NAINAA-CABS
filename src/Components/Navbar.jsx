@@ -51,7 +51,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white nav">
+    <div className="bg-white nav sticky top-0 z-50">
       {/* Top Navbar */}
       <div className="flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-24 py-4 ">
         {/* Logo */}

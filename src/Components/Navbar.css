@@ -2,10 +2,7 @@
   font-family: Poppins, "sansarif";
 }
 
-.nav {
-  position: relative;
-  top: 30px;
-}
+
 
 /* .logo {
   position: relative;
@@ -125,8 +122,7 @@
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2); /* pressed shadow */
 }
 
-
-.logo-image{
+.logo-image {
   width: 200px;
 }
 
@@ -164,8 +160,6 @@
     position: relative;
     left: 30px;
   }
-
-  
 }
 
 @media (width: 1440px) {
