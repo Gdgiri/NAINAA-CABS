@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const VerificationPage = () => {
   const [code, setCode] = useState(["", "", "", ""]);
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(120); // Set timer to 2 minutes (120 seconds)
 
   useEffect(() => {
     if (timer === 0) return;
@@ -28,8 +28,17 @@ const VerificationPage = () => {
   };
 
   const handleResend = () => {
-    setTimer(30); // Reset timer for resend
+    setTimer(120); // Reset timer for resend to 2 minutes
     setCode(["", "", "", ""]); // Clear the code inputs
+  };
+
+  // Convert total seconds into minutes and seconds
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${
+      remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds
+    }`;
   };
 
   return (
@@ -58,7 +67,7 @@ const VerificationPage = () => {
 
         <div className="flex justify-center items-center mt-4 text-sm text-red-500">
           {timer > 0 ? (
-            <span>{`00:${timer < 10 ? `0${timer}` : timer}`}</span>
+            <span>{formatTime(timer)}</span> // Display timer in "minutes:seconds" format
           ) : (
             <span>Expired</span>
           )}

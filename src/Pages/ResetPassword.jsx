@@ -1,64 +1,35 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
-
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
+import UseResetHook from "../CustomHook/UseResetPasswordHook";
+import { toast } from "react-toastify";
 const ResetPassword = () => {
-  const { resetToken } = useParams(); // Dynamic token from URL
   const navigate = useNavigate(); // Use useNavigate for navigation
-
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState(""); // success or error
-  const [loading, setLoading] = useState(false);
-  const [cardShadow, setCardShadow] = useState("shadow-lg shadow-gray-300");
-
-  useEffect(() => {
-    if (!resetToken) {
-      setMessage("Invalid or expired token");
-      setMessageType("error");
-    }
-  }, [resetToken]);
+  const { loading, resetPassword } = UseResetHook();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
-    setLoading(true);
-    setCardShadow("shadow-lg shadow-gray-300");
 
     if (newPassword !== confirmPassword) {
-      setMessage("Passwords do not match");
-      setMessageType("error");
-      setLoading(false);
-      return;
+      toast.error("Passwords do not match.");
     }
 
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/auth/resetPassword/${resetToken}`,
-        { newPassword }
-      );
-
-      setMessage(response.data.message);
-      setMessageType("success");
-      setCardShadow("shadow-lg shadow-green-500");
+      await resetPassword(newPassword);
 
       setTimeout(() => {
         navigate("/success"); // Redirect to login page after successful reset
       }, 3000);
     } catch (err) {
-      setMessage(err.response?.data?.message || "Something went wrong.");
-      setMessageType("error");
-      setCardShadow("shadow-lg shadow-red-500");
-    } finally {
-      setLoading(false);
+      console.log(err);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div
-        className={`bg-white rounded-3xl ${cardShadow} flex flex-col md:flex-row-reverse w-full max-w-4xl overflow-hidden transition-shadow duration-300`}
+        className={`bg-white rounded-3xl  flex flex-col md:flex-row-reverse w-full max-w-4xl overflow-hidden transition-shadow duration-300`}
       >
         {/* Right Image Section */}
         <div className="hidden md:block md:w-1/2">
@@ -97,17 +68,17 @@ const ResetPassword = () => {
               required
               className="w-full px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1f8acd]"
             />
-              {message && (
-            <div
-              className={`text-center mb-4 font-medium p-4 rounded-lg transition-all duration-300 ${
-                messageType === "success"
-                  ? "bg-green-100 border border-green-400 shadow-lg shadow-green-300 text-green-600"
-                  : "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
-              }`}
-            >
-              {message}
-            </div>
-          )}
+            {/* {message && (
+              <div
+                className={`text-center mb-4 font-medium p-4 rounded-lg transition-all duration-300 ${
+                  messageType === "success"
+                    ? "bg-green-100 border border-green-400 shadow-lg shadow-green-300 text-green-600"
+                    : "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
+                }`}
+              >
+                {message}
+              </div>
+            )} */}
             <button
               type="submit"
               disabled={loading}
@@ -142,8 +113,6 @@ const ResetPassword = () => {
               {loading ? "Resetting..." : "Reset Password"}
             </button>
           </form>
-
-        
         </div>
       </div>
     </div>

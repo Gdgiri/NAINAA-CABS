@@ -18,6 +18,8 @@ import VerificationPage from "./Pages/VerificationPage";
 import UpdatePassword from "./Pages/ConfirmPassword";
 import PasswordResetSuccess from "./Pages/PasswordResetSuccess";
 import Profile from "./Pages/Profile";
+import Nav from "./Components/Nav";
+import Home from "./Pages/Home";
 
 const App = () => {
   const location = useLocation();
@@ -31,6 +33,7 @@ const App = () => {
     location.pathname === "/success" ||
     location.pathname === "/profile" ||
     location.pathname === "/bookings" ||
+    location.pathname === "/admin" ||
     location.pathname.startsWith("/reset");
 
   return (
@@ -48,7 +51,16 @@ const App = () => {
         <Route path="/success" element={<PasswordResetSuccess />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/reset/:resetToken" element={<ResetPassword />} />
+        <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
+        <Route
+          path="/admin"
+          element={
+            <div className="flex flex-col md:flex-row">
+              <Nav />
+              <Home />
+            </div>
+          }
+        />
       </Routes>
 
       {/* Render additional sections only on non-auth routes */}

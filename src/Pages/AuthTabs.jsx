@@ -9,7 +9,10 @@ import { useNavigate } from "react-router-dom";
 import register from "../assets/register.jpg";
 import login from "../assets/login.jpg";
 import useSIgnInHook from "../CustomHook/UseSigninHook";
+import useSignUp from "../CustomHook/UseSignupHook";
+
 import "../Pages/AuthTabs.css";
+import { toast } from "react-toastify";
 
 const AuthTabs = () => {
   const navigate = useNavigate();
@@ -21,17 +24,21 @@ const AuthTabs = () => {
     password: "",
     confirmpassword: "",
   });
-  const { code, loading, signin } = useSIgnInHook();
-  const [username, setUsername] = useState("");
-  const [role, setRole] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
+  const { code, loading, Signin, message, setCode } = useSIgnInHook();
+  const { signUp, signUpLoading, signUpCode } = useSignUp();
   const [messageVisible, setMessageVisible] = useState(true);
-  const [cardShadow, setCardShadow] = useState("shadow-lg shadow-gray-300");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+  const switchTab = () => {
+    setActiveTab("login");
+  };
+
+  useEffect(() => {
+    if (signUpCode == 201) {
+      switchTab();
+    }
+  }, [signUpCode]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,7 +46,7 @@ const AuthTabs = () => {
 
   const clearForm = () => {
     setFormData({
-      emailOrPhone: "", 
+      emailOrPhone: "",
       username: "",
       email: "",
       phone: "",
@@ -50,78 +57,59 @@ const AuthTabs = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setMessage("");
+
     setMessageVisible(true);
     try {
-      await signin(formData.emailOrPhone, formData.password);
-      setMessage("Login successful!");
-      setMessageType("success");
-      setCardShadow("shadow-lg shadow-green-500"); // Set success shadow
+      await Signin(formData.emailOrPhone, formData.password);
 
-      // Navigate after the success message timeout
-      setTimeout(() => {
+      if (code == 200) {
         setMessageVisible(false);
-        setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
-        navigate("/"); // Navigate after the message timeout
-      }, 3000); // Hide message and reset shadow after 3 seconds
-
+        setCode(null);
+        navigate("/");
+      }
       clearForm();
       // console.log(res.data);
     } catch (err) {
       console.error(err);
-      setMessage("Login failed. Please check your credentials.");
-      setMessageType("error");
-      setCardShadow("shadow-lg shadow-red-500"); // Set error shadow
 
       setTimeout(() => {
         setMessageVisible(false);
-        setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
       }, 3000); // Hide message and reset shadow after 3 seconds
     }
   };
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setMessage("");
+    console.log(formData);
+
     setMessageVisible(true);
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
-        username: formData.username,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-        confirmpassword: formData.confirmpassword,
-      });
-      setMessage("Registration successful!");
-      setMessageType("success");
-      setCardShadow("shadow-lg shadow-green-500"); // Set success shadow
-      setTimeout(() => {
-        setMessageVisible(false);
-        setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
-      }, 3000); // Hide message and reset shadow after 3 seconds
+      if (formData.password !== formData.confirmpassword) {
+        toast.warning("Password and Confirm Password do not match");
+        return;
+      }
+      await signUp(formData);
+
       clearForm();
-      console.log(res.data);
     } catch (err) {
       console.error(err);
-      setMessage("Registration failed. Try again.");
-      setMessageType("error");
-      setCardShadow("shadow-lg shadow-red-500"); // Set error shadow
+
       setTimeout(() => {
         setMessageVisible(false);
-        setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
       }, 3000); // Hide message and reset shadow after 3 seconds
-    }
-    if (formData.password !== formData.confirmpassword) {
-      setMessage("Passwords do not match.");
-      setMessageType("error");
-      return;
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
       <div
-        className={`bg-white rounded-3xl ${cardShadow} w-full max-w-5xl flex flex-col md:flex-row ${
+        className={`bg-white rounded-3xl shadow-lg ${
+          code === 400 || code === 404
+            ? "border border-red-400 "
+            : code === 200 || code === 201
+            ? "border border-green-400 "
+            : "border border-gray-300 "
+        } w-full max-w-5xl flex flex-col md:flex-row ${
           activeTab === "register" ? "md:flex-row-reverse" : ""
         } overflow-hidden transition-shadow duration-300`}
       >
@@ -157,7 +145,6 @@ const AuthTabs = () => {
             <button
               onClick={() => {
                 setActiveTab("login");
-                setMessage(""); // clear message on tab switch
               }}
               className={`w-1/2 py-2 text-lg font-semibold transition-all duration-300 ${
                 activeTab === "login"
@@ -170,13 +157,13 @@ const AuthTabs = () => {
             <button
               onClick={() => {
                 setActiveTab("register");
-                setMessage(""); // clear message on tab switch
               }}
               className={`w-1/2 py-2 text-lg font-semibold transition-all duration-300 ${
                 activeTab === "register"
                   ? "bg-[#2E709E] text-white"
                   : "bg-gray-100 text-gray-800 hover:bg-gray-200"
               }`}
+              disabled={loading}
             >
               Register
             </button>
@@ -186,9 +173,9 @@ const AuthTabs = () => {
           {messageVisible && message && (
             <div
               className={`text-center mb-4 font-medium p-4 rounded-lg transition-all duration-300 ${
-                messageType === "success"
-                  ? "bg-green-100 border border-green-400 shadow-lg shadow-green-300 text-green-600"
-                  : "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
+                code === 400 || code === 404
+                  ? "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
+                  : "bg-green-100 border border-green-400 shadow-lg shadow-green-300 text-green-600"
               }`}
             >
               {message}
@@ -227,9 +214,32 @@ const AuthTabs = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-[#2E709E] text-white py-3 rounded-xl hover:bg-[#3891d0] transition duration-300"
+                className="w-full bg-[#2E709E] text-white py-3 rounded-xl hover:bg-[#3891d0] transition duration-300 flex justify-center items-center gap-2"
+                disabled={loading} // optional but prevents double submit
               >
-                Login
+                {loading && (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                  </svg>
+                )}
+                {loading ? "Loading..." : "Login"}
               </button>
 
               <Link
@@ -329,9 +339,32 @@ const AuthTabs = () => {
               </div> */}
               <button
                 type="submit"
-                className="w-full bg-[#2E709E] text-white py-3 rounded-xl hover:bg-[#3891d0] transition duration-300"
+                className="w-full bg-[#2E709E] text-white py-3 rounded-xl hover:bg-[#3891d0] transition duration-300 flex justify-center items-center gap-2"
+                disabled={signUpLoading} // optional: disables button while loading
               >
-                Register
+                {signUpLoading && (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                    ></path>
+                  </svg>
+                )}
+                {signUpLoading ? "Loading..." : "Register"}
               </button>
             </form>
           )}

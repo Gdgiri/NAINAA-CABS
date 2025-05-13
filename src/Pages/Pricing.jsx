@@ -79,9 +79,11 @@ const Pricing = () => {
                 </li>
               </ul>
             </div>
-            <button className="mt-6 font-semibold w-full bg-gray-100 text-gray-800 py-2 rounded hover:bg-gray-200">
-              Book Now
-            </button>
+            <a href="#booknow">
+              <button className="mt-6 font-semibold w-full bg-gray-100 text-gray-800 py-2 rounded hover:bg-gray-200">
+                Book Now
+              </button>
+            </a>
           </div>
         </div>
 
@@ -142,9 +144,11 @@ const Pricing = () => {
                 <span>No Driver Beta</span>
               </li>
             </ul>
-            <button className="mt-6 w-full font-semibold bg-[#2E709E] text-white py-2 rounded hover:bg-[#3891d0]">
-              Book Now
-            </button>
+            <a href="#booknow">
+              <button className="mt-6 w-full font-semibold bg-[#2E709E] text-white py-2 rounded hover:bg-[#3891d0]">
+                Book Now
+              </button>
+            </a>
           </div>
         </div>
       </div>

@@ -2,16 +2,26 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from "../Common/Firebase.js";
+import UseOAuthAutentication from "../CustomHook/UseOAuthHook.jsx";
 import "./OAuth.css";
 
 const OAuth = ({ buttonText }) => {
+  const { loading, OAuthAutentication } = UseOAuthAutentication();
   const handleClick = async () => {
     try {
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);
 
       const result = await signInWithPopup(auth, provider);
-
+      let values = {
+        name: result?.user?.displayName,
+        email: result?.user?.email,
+        mobile: result?.user?.phoneNumber,
+      };
+      console.log("values", values);
+      if (result) {
+        await OAuthAutentication(values);
+      }
       console.log(result);
     } catch (error) {
       console.log("could not sign in with google", error);

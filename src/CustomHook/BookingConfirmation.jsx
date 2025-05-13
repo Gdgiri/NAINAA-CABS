@@ -11,6 +11,7 @@ const BookingConfirmation = () => {
       setLoading(false);
     }
   };
+
   return { loading, getCoordinates };
 };
 

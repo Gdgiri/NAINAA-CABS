@@ -99,7 +99,7 @@ const BookNow = () => {
   }, [pickupLocation, dropLocation]);
 
   return (
-    <section className="relative bg-white py-20">
+    <section className="relative bg-white py-20 mt-32" id="booknow">
       <div className="text-center z-20 relative mb-10">
         <h2 className="text-5xl font-semibold text-[#2E709E]">Book Now</h2>
         <div className="w-36 h-1 mx-auto mt-2 bg-[#E6A43B] rounded-full"></div>

@@ -11,20 +11,21 @@ import logo from "../assets/logo.jpg";
 const Footer = () => {
   return (
     <footer className="bg-[#2E709E] text-white py-10 px-6">
-      <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4">
+      <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4 text-center md:text-left">
         {/* Company Info */}
         <div>
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
             <img
               src={logo}
               alt="Nainaa Cabs"
-              className="w-20 h-20 object-cover rounded-full"
+              className="w-16 h-16 object-cover rounded-full"
             />
             <h2 className="text-2xl font-bold">
               <span className="text-[#E6A43B]">N</span>AINAA{" "}
               <span className="text-[#E6A43B]">C</span>ABS
             </h2>
           </div>
+
           <p className="text-sm leading-relaxed">
             At Nainaa Cabs, we provide premium, comfortable and affordable Cab
             Services for every journey – driven by a passion for travel,
@@ -33,7 +34,7 @@ const Footer = () => {
         </div>
 
         {/* Links */}
-        <div className="ml-24">
+        <div className="md:ml-24">
           <h3 className="font-semibold text-lg mb-3">Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -60,7 +61,7 @@ const Footer = () => {
         </div>
 
         {/* Guides */}
-        <div className="ml-14">
+        <div className="md:ml-14">
           <h3 className="font-semibold text-lg mb-3">Guides</h3>
           <ul className="space-y-2 text-sm">
             <li>
@@ -68,7 +69,6 @@ const Footer = () => {
                 Connect Us
               </a>
             </li>
-
             <li>
               <a href="#" className="hover:underline">
                 Help
@@ -78,17 +78,17 @@ const Footer = () => {
         </div>
 
         {/* Contact */}
-        <div className="ml-14">
+        <div className="md:ml-14">
           <h3 className="font-semibold text-lg mb-3">Contact</h3>
           <p className="text-sm">Soundarrajan R</p>
           <p className="text-sm">21/A, Raghavendrapuram, </p>
-          <p className="text-sm">Srirangam,Thiruchirapalli,</p>
+          <p className="text-sm">Srirangam, Thiruchirapalli,</p>
           <p className="text-sm">India, Tamilnadu.</p>
           <p className="text-sm mt-2">Phone: +91 88077 18563</p>
-          <p className="text-sm ml-[47px]">+91 93600 55963</p>
+          <p className="text-sm md:ml-[47px]">+91 93600 55963</p>
 
           {/* Social Icons */}
-          <div className="flex gap-3 mt-5">
+          <div className="flex gap-3 mt-5 justify-center md:justify-start">
             {[FaFacebookF, FaInstagram, FaWhatsapp, FaEnvelope].map(
               (Icon, idx) => (
                 <a
@@ -106,10 +106,10 @@ const Footer = () => {
 
       {/* Bottom Copyright */}
       <div className="mt-10 border-t border-white pt-4 text-center text-sm text-white">
-        © 2025 LeastAction. All rights reserved. Powered by
+        © 2025 LeastAction. All rights reserved. Powered by{" "}
         <img
           src={lalogo}
-          alt="LeasetAction Logo"
+          alt="LeastAction Logo"
           className="inline h-6 align-middle ml-1 rounded-full"
         />
       </div>

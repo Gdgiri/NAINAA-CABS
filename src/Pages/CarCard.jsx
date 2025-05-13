@@ -184,60 +184,62 @@ export default function CarCard() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 md:py-16 lg:py-24 bg-white">
-      {/* Title */}
-      <div className="text-center mb-10 mt-10 md:mt-20">
-        <h2 className="text-[#2E709E] text-5xl md:text-4xl lg:text-5xl font-bold">
-          Our Cars
-        </h2>
-        <div className="h-1 w-20 bg-[#E6A43B] mx-auto my-4 rounded"></div>
-      </div>
-      <div className="w-1 h-20 bg-[#E6A43B] rounded vertical-line"></div>
-      {/* Section */}
-      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl gap-8 md:gap-12 px-4">
-        <div></div>
-        {/* Left Text Content */}
-        <div className="flex flex-col text-center lg:text-left items-center lg:items-start space-y-4 lg:w-1/2 car-headings">
-          <p className="text-sm uppercase tracking-wide text-gray-600">
-            Experience the Freedom, Embrace the Exceptional
-          </p>
-
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#2E709E]">
-            Mahindra XUV700 AX7L
-          </h1>
-
-          <ul className="list-disc list-inside text-base md:text-lg text-[#2E709E] space-y-2 cars">
-            <li className="first">Adas control</li>
-            <li className="second">Sun roof</li>
-            <li className="third">Ventilator seat</li>
-            <li className="fourth">Alexa control</li>
-            <li className="fifth">In car TVs</li>
-            <li className="sixth">6+1 seater</li>
-          </ul>
+    <section id="cars" className="relative">
+      <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 md:py-16 lg:py-24 bg-white">
+        {/* Title */}
+        <div className="text-center mb-10 mt-10 md:mt-20">
+          <h2 className="text-[#2E709E] text-5xl md:text-4xl lg:text-5xl font-bold">
+            Our Cars
+          </h2>
+          <div className="h-1 w-20 bg-[#E6A43B] mx-auto my-4 rounded"></div>
         </div>
+        <div className="w-1 h-20 bg-[#E6A43B] rounded vertical-line"></div>
+        {/* Section */}
+        <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl gap-8 md:gap-12 px-4">
+          <div></div>
+          {/* Left Text Content */}
+          <div className="flex flex-col text-center lg:text-left items-center lg:items-start space-y-4 lg:w-1/2 car-headings">
+            <p className="text-sm uppercase tracking-wide text-gray-600">
+              Experience the Freedom, Embrace the Exceptional
+            </p>
 
-        {/* Right: Image Display */}
-        <div
-          className="relative w-full max-w-md lg:max-w-xl xl:max-w-2xl h-auto overflow-hidden flex justify-center items-center car-size hidden md:block"
-          onWheel={(e) => {
-            e.preventDefault();
-            e.deltaY > 0 ? nextFrame() : prevFrame();
-          }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-        >
-          <img
-            src={images[index]}
-            alt={`360 view ${index}`}
-            className="w-full object-contain"
-          />
-          {/* <img
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#2E709E]">
+              Mahindra XUV700 AX7L
+            </h1>
+
+            <ul className="list-disc list-inside text-base md:text-lg text-[#2E709E] space-y-2 cars">
+              <li className="first">Adas control</li>
+              <li className="second">Sun roof</li>
+              <li className="third">Ventilator seat</li>
+              <li className="fourth">Alexa control</li>
+              <li className="fifth">In car TVs</li>
+              <li className="sixth">6+1 seater</li>
+            </ul>
+          </div>
+
+          {/* Right: Image Display */}
+          <div
+            className="relative w-full max-w-md lg:max-w-xl xl:max-w-2xl h-auto overflow-hidden flex justify-center items-center car-size hidden md:block"
+            onWheel={(e) => {
+              e.preventDefault();
+              e.deltaY > 0 ? nextFrame() : prevFrame();
+            }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+          >
+            <img
+              src={images[index]}
+              alt={`360 view ${index}`}
+              className="w-full object-contain"
+            />
+            {/* <img
             src={images[index]}
             alt={`360 view ${index}`}
             className="w-full object-contain"
           /> */}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -3,7 +3,7 @@ import car from "../assets/car1.jpg";
 import aboutcar from "../assets/aboutcar.png";
 const About = () => {
   return (
-    <section className=" py-16 px-6 lg:px-20">
+    <section className=" py-16 px-6 lg:px-20" id="about">
       <div className="text-center mb-24">
         <h2 className="text-5xl font-semibold text-[#2E709E] relative inline-block head">
           About Us

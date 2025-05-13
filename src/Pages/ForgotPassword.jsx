@@ -1,42 +1,32 @@
 import React, { useState } from "react";
 import axios from "axios";
+import useforgotPassword from "../CustomHook/useForgotHook";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState(""); // success or error
+
   const [messageVisible, setMessageVisible] = useState(true); // To control message visibility
   const [cardShadow, setCardShadow] = useState("shadow-lg shadow-gray-300"); // Default shadow
-  const [loading, setLoading] = useState(false);
-
+  const { forgotLoading, forgotPassword } = useforgotPassword();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
+
     setMessageVisible(true);
-    setLoading(true);
+
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/forgotpassword",
-        { email }
-      );
-      setMessage("Password reset link sent!");
-      setMessageType("success");
-      setCardShadow("shadow-lg shadow-green-500"); // Success shadow
+      await forgotPassword(email);
+      setCardShadow("shadow-lg shadow-green-500");
       setTimeout(() => {
         setMessageVisible(false);
-        setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
-      }, 3000); // Hide message and reset shadow after 3 seconds
-      setEmail(""); // Clear email input after successful submission
+        setCardShadow("shadow-lg shadow-gray-300");
+      }, 3000);
+      setEmail("");
     } catch (err) {
-      setMessage("Failed to send reset link. Please try again.");
-      setMessageType("error");
-      setCardShadow("shadow-lg shadow-red-500"); // Error shadow
+      console.error(err);
+
       setTimeout(() => {
         setMessageVisible(false);
-        setCardShadow("shadow-lg shadow-gray-300"); // Reset shadow to normal after 3 seconds
       }, 3000); // Hide message and reset shadow after 3 seconds
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -77,7 +67,7 @@ const ForgotPassword = () => {
               required
               className="w-full px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1f8acd]"
             />
-            {messageVisible && message && (
+            {/* {messageVisible  (
               <div
                 className={`text-center mt-5 font-medium p-4 rounded-lg transition-all duration-300 ${
                   messageType === "success"
@@ -85,19 +75,19 @@ const ForgotPassword = () => {
                     : "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
                 }`}
               >
-                {message}
+               
               </div>
-            )}
+            )} */}
             <button
               type="submit"
-              disabled={loading}
+              disabled={forgotLoading}
               className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl transition duration-300 ${
-                loading
+                forgotLoading
                   ? "bg-gray-400 cursor-not-allowed text-white"
                   : "bg-[#2E709E] hover:bg-[#3ca0e8] text-white"
               }`}
             >
-              {loading && (
+              {forgotLoading && (
                 <svg
                   className="animate-spin h-5 w-5 text-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +109,7 @@ const ForgotPassword = () => {
                   ></path>
                 </svg>
               )}
-              {loading ? "Sending..." : "Continue"}
+              {forgotLoading ? "Sending..." : "Continue"}
             </button>
           </form>
         </div>

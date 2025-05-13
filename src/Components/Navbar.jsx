@@ -6,19 +6,19 @@ import { FaAngleUp } from "react-icons/fa6";
 import { FaAngleDown } from "react-icons/fa6";
 import "../Components/Navbar.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [username, setUsername] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false); // To manage dropdown visibility
-  const navigate = useNavigate();
 
   // Check if user is logged in on component mount
   useEffect(() => {
-    const storedUsername = localStorage.getItem("username");
-    if (storedUsername) {
-      setUsername(storedUsername);
-    }
+    let user = JSON.parse(localStorage.getItem("user"));
+    // console.log(user.firstName);
+    setUsername(user?.name);
   }, []);
 
   const handleLoginClick = () => {
@@ -38,12 +38,11 @@ const Navbar = () => {
   };
 
   const handleLogoutClick = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("role");
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    localStorage.removeItem("user");
+    toast.success("Logout successful");
     setUsername(null);
-    setShowDropdown(false); // Close dropdown on logout
-    navigate("/"); // Redirect to home page after logout
+    setShowDropdown(false);
   };
 
   const toggleDropdown = () => {
@@ -53,10 +52,10 @@ const Navbar = () => {
   return (
     <div className="bg-white nav sticky top-0 z-50">
       {/* Top Navbar */}
-      <div className="flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-24 py-4 ">
+      <div className="flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-24 py-8 ">
         {/* Logo */}
         <div className="logo-wrapper relative group h-30 w-20 sm:h-24 sm:w-24 md:h-30 md:w-44 overflow-hidden flex items-center justify-center bg-white ml-2 sm:ml-4 md:ml-8 lg:ml-12 logo">
-          <a href="#">
+          <a href="#home">
             <img
               src={logo}
               alt="Nainaa-logo"
@@ -78,13 +77,19 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-12 lg:gap-20 mr-4 md:mr-12 lg:mr-20">
           <div className="flex items-center gap-8 menus">
-            {["Home", "About", "Booking", "Cars", "Contacts"].map((text) => (
+            {[
+              { label: "Home", id: "home" },
+              { label: "About", id: "about" },
+              { label: "Booking", id: "booknow" },
+              { label: "Cars", id: "cars" },
+              { label: "Contacts", id: "contact" },
+            ].map(({ label, id }) => (
               <a
-                key={text}
-                href="#"
+                key={id}
+                href={`#${id}`}
                 className="text-[#2E709E] font-extrabold hover:text-[#2a6e9e] hover:decoration-2 menus-link"
               >
-                {text}
+                {label}
               </a>
             ))}
           </div>
@@ -116,16 +121,10 @@ const Navbar = () => {
 
               {/* Dropdown menu */}
               {showDropdown && (
-                <div className="absolute right-0  bg-white border  shadow-lg h-auto  rounded-2xl p-2 ">
-                  <button
-                    onClick={handleProfileClick}
-                    className="block text-[#2E709E] py-1 px-4 hover:bg-[#f0f0f0] rounded-md"
-                  >
-                    Profile
-                  </button>
+                <div className="absolute right-0  bg-white border  shadow-lg h-auto  rounded-2xl p-2 w-full ">
                   <button
                     onClick={handleLogoutClick}
-                    className="block text-[#2E709E] py-1 px-4 hover:bg-red-500 hover:text-white rounded-md"
+                    className="block text-[#2E709E] py-1 px-4 hover:bg-red-500 hover:text-white rounded-md w-full font-semibold"
                   >
                     Logout
                   </button>
@@ -146,13 +145,19 @@ const Navbar = () => {
       {/* Mobile Nav */}
       {menuOpen && (
         <div className="flex flex-col items-center gap-4 pb-6 md:hidden">
-          {["Home", "About", "Booking", "Cars", "Contacts"].map((text) => (
+          {[
+            { label: "Home", id: "home" },
+            { label: "About", id: "about" },
+            { label: "Booking", id: "booknow" },
+            { label: "Cars", id: "cars" },
+            { label: "Contacts", id: "contact" },
+          ].map(({ label, id }) => (
             <a
-              key={text}
-              href="#"
+              key={id}
+              href={`#${id}`}
               className="text-[#2E709E] font-extrabold hover:text-[#2E709E] hover:decoration-2 menus-link"
             >
-              {text}
+              {label}
             </a>
           ))}
           {username ? (
@@ -179,12 +184,6 @@ const Navbar = () => {
               {/* Dropdown menu */}
               {showDropdown && (
                 <div className="relative right-0 mt-2 bg-white border border-[#2E709E] shadow-lg rounded-md p-2  ">
-                  <button
-                    onClick={handleProfileClick}
-                    className="block text-[#2E709E] py-1 px-4 hover:bg-[#f0f0f0] rounded-md"
-                  >
-                    Profile
-                  </button>
                   <button
                     onClick={handleLogoutClick}
                     className="block text-[#2E709E] py-1 px-4 hover:bg-[#f0f0f0] rounded-md"
