@@ -188,10 +188,10 @@ export default function CarCard() {
       <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 md:py-16 lg:py-24 bg-white">
         {/* Title */}
         <div className="text-center mb-10 mt-10 md:mt-20">
-          <h2 className="text-[#2E709E] text-5xl md:text-4xl lg:text-5xl font-bold">
+          <h2 className="text-[#2E709E] text-4xl md:text-5xl lg:text-5xl font-bold">
             Our Cars
           </h2>
-          <div className="h-1 w-20 bg-[#E6A43B] mx-auto my-4 rounded"></div>
+          <div className="h-1 w-52 bg-[#E6A43B] mx-auto my-4 rounded"></div>
         </div>
         <div className="w-1 h-20 bg-[#E6A43B] rounded vertical-line"></div>
         {/* Section */}

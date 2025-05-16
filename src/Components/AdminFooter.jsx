@@ -8,7 +8,7 @@ import {
 import lalogo from "../assets/la.jpg";
 import logo from "../assets/logo.jpg";
 
-const Footer = () => {
+const AdminFooter = () => {
   return (
     <footer className="bg-[#2E709E] text-white py-10 px-6">
       <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4 text-center md:text-left">
@@ -42,19 +42,15 @@ const Footer = () => {
                 Home
               </a>
             </li>
+
             <li>
-              <a href="#about" className="hover:underline">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="/bookings" className="hover:underline">
+              <a href="#book" className="hover:underline">
                 Booking
               </a>
             </li>
             <li>
-              <a href="#cars" className="hover:underline">
-                Cars
+              <a href="#earn" className="hover:underline">
+                Earning report
               </a>
             </li>
           </ul>
@@ -112,4 +108,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default AdminFooter;

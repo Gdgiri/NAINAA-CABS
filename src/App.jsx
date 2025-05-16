@@ -20,6 +20,13 @@ import PasswordResetSuccess from "./Pages/PasswordResetSuccess";
 import Profile from "./Pages/Profile";
 import Nav from "./Components/Nav";
 import Home from "./Pages/Home";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import ScrollToTopButton from "./Components/ScrollToTopButton";
+import AdminNav from "./Components/AdminNav";
+// import AdminFooter from "./Components/AdminFooter";
+import Earning from "./Pages/Earning";
+import WheelSpinner from "./Components/WheelSpinner";
+import AdminProtectedRoute from "./Components/AdminProtectedRoute";
 
 const App = () => {
   const location = useLocation();
@@ -50,17 +57,37 @@ const App = () => {
         <Route path="/confirm" element={<UpdatePassword />} />
         <Route path="/success" element={<PasswordResetSuccess />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/bookings" element={<Bookings />} />
+        <Route
+          path="/bookings"
+          element={
+            <ProtectedRoute>
+              <Bookings />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/reset-password/:resetToken" element={<ResetPassword />} />
         <Route
           path="/admin"
           element={
-            <div className="flex flex-col md:flex-row">
-              <Nav />
-              <Home />
+            <div>
+              {/* <Nav />
+              <Home /> */}
+              <ProtectedRoute>
+                <AdminProtectedRoute>
+                  <AdminNav />
+                  <div className="mb-12">
+                    <Home />
+                    <Earning />
+                    {/* <WheelSpinner /> */}
+                  </div>
+                  {/* <AdminFooter /> */}
+                </AdminProtectedRoute>
+              </ProtectedRoute>
             </div>
           }
         />
+
+        <Route path="/admins" element={<Bookings />} />
       </Routes>
 
       {/* Render additional sections only on non-auth routes */}
@@ -73,6 +100,7 @@ const App = () => {
           <TestimonialsSection />
           <ContactUs />
           <Footer />
+          <ScrollToTopButton />
         </>
       )}
     </div>

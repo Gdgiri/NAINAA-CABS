@@ -35,7 +35,7 @@ const useSigninHook = () => {
 
       setCode(response.status);
       setMessage(response?.data?.message);
-      console.log("Login response:", response);
+      
     } catch (error) {
       setCode(error?.response?.data?.statusCode);
       toast.error(error?.response?.data?.message);

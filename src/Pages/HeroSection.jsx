@@ -3,10 +3,11 @@ import React from "react";
 import "../Pages/HeroSection.css";
 import { IoCarSportOutline } from "react-icons/io5";
 import { SlBadge } from "react-icons/sl";
-import car from "../assets/car1.png";
 import herocar from "../assets/herocar.png";
 
+
 const HeroSection = () => {
+  
   return (
     <section id="home" className="relative">
       <div className="relative bg-white overflow-hidden min-h-screen flex items-center justify-center mt-24">

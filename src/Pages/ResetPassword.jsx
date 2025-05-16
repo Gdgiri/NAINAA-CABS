@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Use useNavigate instead of useHistory
+import { useNavigate } from "react-router-dom";
 import UseResetHook from "../CustomHook/UseResetPasswordHook";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 const ResetPassword = () => {
-  const navigate = useNavigate(); // Use useNavigate for navigation
+  const navigate = useNavigate();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { loading, resetPassword } = UseResetHook();
@@ -13,24 +17,25 @@ const ResetPassword = () => {
 
     if (newPassword !== confirmPassword) {
       toast.error("Passwords do not match.");
+      return;
     }
 
     try {
       await resetPassword(newPassword);
+      toast.success("Password reset successful!");
 
       setTimeout(() => {
-        navigate("/success"); // Redirect to login page after successful reset
+        navigate("/success");
       }, 3000);
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      toast.error("Password reset failed.");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white p-4">
-      <div
-        className={`bg-white rounded-3xl  flex flex-col md:flex-row-reverse w-full max-w-4xl overflow-hidden transition-shadow duration-300`}
-      >
+      <div className="bg-white rounded-3xl flex flex-col md:flex-row-reverse w-full max-w-4xl overflow-hidden shadow-lg transition-shadow duration-300">
         {/* Right Image Section */}
         <div className="hidden md:block md:w-1/2">
           <img
@@ -50,35 +55,47 @@ const ResetPassword = () => {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            <input
-              type="password"
-              name="newPassword"
-              placeholder="New Password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              required
-              className="w-full px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1f8acd]"
-            />
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm New Password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              className="w-full px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1f8acd]"
-            />
-            {/* {message && (
-              <div
-                className={`text-center mb-4 font-medium p-4 rounded-lg transition-all duration-300 ${
-                  messageType === "success"
-                    ? "bg-green-100 border border-green-400 shadow-lg shadow-green-300 text-green-600"
-                    : "bg-red-100 border border-red-400 shadow-lg shadow-red-300 text-red-600"
-                }`}
+            {/* New Password Field */}
+            <div className="relative">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                name="newPassword"
+                placeholder="New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+                className="w-full px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1f8acd]"
+              />
+              <span
+                onClick={() => setPasswordVisible(!passwordVisible)}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
               >
-                {message}
-              </div>
-            )} */}
+                {passwordVisible ? <FaEye /> : <FaEyeSlash />}
+              </span>
+            </div>
+
+            {/* Confirm Password Field */}
+            <div className="relative">
+              <input
+                type={confirmPasswordVisible ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm New Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                className="w-full px-4 py-3 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#1f8acd]"
+              />
+              <span
+                onClick={() =>
+                  setConfirmPasswordVisible(!confirmPasswordVisible)
+                }
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-gray-500"
+              >
+                {confirmPasswordVisible ? <FaEye /> : <FaEyeSlash />}
+              </span>
+            </div>
+
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}

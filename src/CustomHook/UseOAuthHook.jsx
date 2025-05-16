@@ -9,7 +9,7 @@ const UseOAuthHook = () => {
   const OAuthAutentication = async (values) => {
     try {
       setLoading(true);
-      console.log("values", values);
+      // console.log("values", values);
 
       const response = await AxiosService.post("/api/auth/firebase", values);
       if (response.status == 200 || response.status == 201) {

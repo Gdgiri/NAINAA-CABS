@@ -5,10 +5,10 @@ import "../Pages/Pricing.css";
 const Pricing = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center  px-4 py-10">
-      <h2 className="text-5xl font-semibold text-center text-[#2E709E] mb-1">
+      <h2 className="text-4xl md:text-5xl font-semibold text-center text-[#2E709E] mb-1">
         Our Pricing
       </h2>
-      <div className="h-1 w-40 bg-orange-500 mx-auto mb-12 rounded"></div>
+      <div className="h-1 w-72 bg-orange-500 mx-auto mb-10 rounded"></div>
 
       {/* Row with both cards */}
       <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-10">

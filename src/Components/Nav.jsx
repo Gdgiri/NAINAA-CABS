@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { FaPhone, FaChartLine, FaSignOutAlt, FaBars } from "react-icons/fa";
+import {
+  FaPhone,
+  FaChartLine,
+  FaSignOutAlt,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa"; // Import the cross (close) icon
 
 const Nav = () => {
-  const [isOpen, setIsOpen] = useState(false); // for mobile toggle
+  const [isOpen, setIsOpen] = useState(false); // For mobile toggle
 
   const toggleNav = () => {
     setIsOpen(!isOpen);
@@ -14,7 +20,8 @@ const Nav = () => {
       <div className="md:hidden bg-gray-800 text-white flex justify-between items-center p-4">
         <h1 className="text-xl font-bold">Admin</h1>
         <button onClick={toggleNav}>
-          <FaBars size={24} />
+          {/* Toggle between bars and times (cross) icon */}
+          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
       </div>
 

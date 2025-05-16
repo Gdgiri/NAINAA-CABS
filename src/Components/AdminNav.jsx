@@ -4,29 +4,26 @@ import { FiMenu, FiX } from "react-icons/fi"; // Icons for toggle
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { FaAngleUp } from "react-icons/fa6";
 import { FaAngleDown } from "react-icons/fa6";
-import "../Components/Navbar.css";
+import "../Components/AdminNav.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import wheelImg from "../assets/wheel.png";
 
-const Navbar = () => {
+const AdminNav = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [username, setUsername] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false); // To manage dropdown visibility
 
   // Check if user is logged in on component mount
-  let user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
+    let user = JSON.parse(localStorage.getItem("user"));
     // console.log(user.firstName);
     setUsername(user?.name);
   }, []);
 
   const handleLoginClick = () => {
     navigate("/auth");
-  };
-
-  const handleProfileClick = () => {
-    navigate("/profile");
   };
 
   const handleMouseEnter = () => {
@@ -50,18 +47,24 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white nav sticky top-0 z-50">
-      {/* Top Navbar */}
-      <div className="flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-24  ">
+    <div className="bg-white nav sticky top-0 z-50 ">
+      {/*AdminNav */}
+      <div className="flex items-center justify-between px-4 sm:px-6 md:px-12   ">
         {/* Logo */}
+
         <div className="logo-wrapper relative group h-30 w-20 sm:h-24 sm:w-24 md:h-30 md:w-44 overflow-hidden flex items-center justify-center bg-white ml-2 sm:ml-4 md:ml-8 lg:ml-12 logo">
-          <a href="#home">
+          <a href="/admin">
             <img
               src={logo}
               alt="Nainaa-logo"
               className="h-full w-full object-cover z-10 logo-image"
             />
           </a>
+        </div>
+        <div className="mr-20 md:mr-24">
+          <h1 className="text-sm md:text-xl font-semibold text-[#2E709E]">
+            <span className="wave">👋</span> Hello, Admin
+          </h1>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -75,19 +78,17 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-12 lg:gap-20 mr-4 md:mr-12 lg:mr-20">
-          <div className="flex items-center gap-8 menus">
+        <div className="hidden md:flex items-center gap-12 lg:gap-20 mr-4 md:mr-12 lg:ml-[10px]">
+          <div className="flex items-center gap-8 menus ">
             {[
-              { label: "Home", id: "home" },
-              { label: "About", id: "about" },
-              { label: "Booking", id: "bookings", isRoute: true }, // Mark as a route
-              { label: "Cars", id: "cars" },
-              { label: "Contacts", id: "contact" },
+              { label: "Home", isRoute: true },
+              { label: "Booking", id: "book" }, // Mark as a route
+              { label: "Earning Report", id: "earn" },
             ].map(({ label, id, isRoute }) =>
               isRoute ? (
                 <a
                   key={id}
-                  href="/bookings" // Navigate to /bookings page for Booking
+                  href="/" // Navigate to /bookings page for Booking
                   className="text-[#2E709E] font-extrabold hover:text-[#2a6e9e] hover:decoration-2 menus-link"
                 >
                   {label}
@@ -132,14 +133,6 @@ const Navbar = () => {
               {/* Dropdown menu */}
               {showDropdown && (
                 <div className="absolute right-0  bg-white border  shadow-lg h-auto  rounded-2xl p-2 w-full ">
-                  {user?.role == "admin" && (
-                    <button
-                      onClick={() => navigate("/admin")}
-                      className="block text-[#2E709E] py-1 px-4 hover:bg-green-500 hover:text-white rounded-md w-full font-semibold"
-                    >
-                      Admin
-                    </button>
-                  )}
                   <button
                     onClick={handleLogoutClick}
                     className="block text-[#2E709E] py-1 px-4 hover:bg-red-500 hover:text-white rounded-md w-full font-semibold"
@@ -165,10 +158,8 @@ const Navbar = () => {
         <div className="flex flex-col items-center gap-4 pb-6 md:hidden">
           {[
             { label: "Home", id: "home" },
-            { label: "About", id: "about" },
             { label: "Booking", id: "bookings", isRoute: true },
-            { label: "Cars", id: "cars" },
-            { label: "Contacts", id: "contact" },
+            { label: "Earning Reports", id: "earn" },
           ].map(({ label, id, isRoute }) =>
             isRoute ? (
               <a
@@ -235,4 +226,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default AdminNav;

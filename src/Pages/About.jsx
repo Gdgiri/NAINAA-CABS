@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section className=" py-16 px-6 lg:px-20" id="about">
       <div className="text-center mb-24">
-        <h2 className="text-5xl font-semibold text-[#2E709E] relative inline-block head">
+        <h2 className="text-4xl md:text-5xl font-semibold text-[#2E709E] relative inline-block head">
           About Us
           <span className="block w-25 h-1 bg-orange-500 mt-1"></span>
         </h2>
