@@ -28,7 +28,6 @@ const Bookings = () => {
     getUserReview();
   }, []);
 
-  
   const handleBack = () => {
     navigate("/");
   };
@@ -77,7 +76,7 @@ const Bookings = () => {
                   <img
                     src="https://img.freepik.com/premium-vector/no-data-found-illustration-sites-banner-design-vector-illustration_620585-1690.jpg"
                     alt="no data found"
-                    className="w-3/4 relative left-16"
+                    className="w-3/4 relative left-8 md:left-16"
                   />
                 </div>
               ) : (
