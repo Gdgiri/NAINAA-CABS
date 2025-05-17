@@ -41,6 +41,10 @@ const Navbar = () => {
     sessionStorage.removeItem("token");
     localStorage.removeItem("user");
     toast.success("Logout successful");
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+
     setUsername(null);
     setShowDropdown(false);
   };

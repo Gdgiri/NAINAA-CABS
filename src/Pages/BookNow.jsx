@@ -36,6 +36,8 @@ const BookNow = () => {
     fare,
   };
 
+  let user = JSON.parse(localStorage.getItem("user"));
+
   const handleSumitForm = async (e) => {
     e.preventDefault();
     await handleSubmit(datas);
@@ -362,24 +364,26 @@ const BookNow = () => {
             </div>
 
             <div className="col-span-1 md:col-span-2 text-center mt-4">
-              <button
-                type="submit"
-                className={`book px-8 py-2 bg-[#2E709E] mx-auto text-white font-semibold rounded-full hover:bg-blue-900 flex justify-center items-center ${
-                  loading
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-[#2E709E] hover:bg-[#378dca]"
-                }`}
-              >
-                {loading ? (
-                  <img
-                    src={wheelImg}
-                    alt="Spinning Wheel"
-                    className="w-10 h-10 animate-spin"
-                  />
-                ) : (
-                  "Book"
-                )}
-              </button>
+              {user?.role !== "admin" && (
+                <button
+                  type="submit"
+                  className={`book px-8 py-2 bg-[#2E709E] mx-auto text-white font-semibold rounded-full hover:bg-blue-900 flex justify-center items-center ${
+                    loading
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-[#2E709E] hover:bg-[#378dca]"
+                  }`}
+                >
+                  {loading ? (
+                    <img
+                      src={wheelImg}
+                      alt="Spinning Wheel"
+                      className="w-10 h-10 animate-spin"
+                    />
+                  ) : (
+                    "Book"
+                  )}
+                </button>
+              )}
             </div>
           </form>
         </div>
