@@ -80,8 +80,7 @@ const AuthTabs = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(formData);
-
+   
     setMessageVisible(true);
     try {
       if (formData.password !== formData.confirmpassword) {

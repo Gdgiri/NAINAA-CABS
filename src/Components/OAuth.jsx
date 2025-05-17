@@ -18,11 +18,10 @@ const OAuth = ({ buttonText }) => {
         email: result?.user?.email,
         mobile: result?.user?.phoneNumber,
       };
-      console.log("values", values);
+     
       if (result) {
         await OAuthAutentication(values);
       }
-      console.log(result);
     } catch (error) {
       console.log("could not sign in with google", error);
     }

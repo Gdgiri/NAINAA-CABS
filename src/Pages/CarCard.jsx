@@ -208,12 +208,12 @@ export default function CarCard() {
             </h1>
 
             <ul className="list-disc list-inside text-base md:text-lg text-[#2E709E] space-y-2 cars">
-              <li className="first">Adas control</li>
-              <li className="second">Sun roof</li>
-              <li className="third">Ventilator seat</li>
-              <li className="fourth">Alexa control</li>
-              <li className="fifth">In car TVs</li>
-              <li className="sixth">6+1 seater</li>
+              <li className="first">ADAS Control-To prevent accidents</li>
+              <li className="second">Sunroof</li>
+              <li className="third">Ventilated Seats</li>
+              <li className="fourth">Alexa Integration</li>
+              <li className="fifth">In-Car TVs</li>
+              <li className="sixth">6+1 seater Options</li>
             </ul>
           </div>
 

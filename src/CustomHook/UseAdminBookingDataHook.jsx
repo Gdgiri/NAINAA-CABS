@@ -39,7 +39,7 @@ const UseAdminBookingDataHook = () => {
         toast.success(response?.data?.message);
         window.location.reload();
       }
-      console.log(response);
+     
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.message);

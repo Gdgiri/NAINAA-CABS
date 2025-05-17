@@ -35,7 +35,7 @@
 }
 
 .car {
-  height: 600px;
+  height: 500px;
   position: relative;
   bottom: 180px;
   right: 180px;
@@ -54,5 +54,8 @@
 
   .start {
     font-size: 35px;
+  }
+  .car{
+    height: 200px;
   }
 }

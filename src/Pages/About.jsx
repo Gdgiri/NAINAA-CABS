@@ -17,33 +17,37 @@ const About = () => {
             NAINAA CABS
           </h1>
           <p className="text-gray-600 text-base leading-relaxed">
-            Based in Trichy, Nainaa Cabs offers the services listed below. If
-            necessary, we may offer both a one-way and a round-trip. By offering
-            the greatest service at the most affordable price, you can get in
-            touch with our customer care with any questions.
+            Based in Trichy, Tamil Nadu, Nainaa Cabs believes that premium
+            travel should be accessible to everyone - which is why we offer a
+            high-quality travel experience at an affordable cost. Whether you
+            need a one-way ride or a round-trip. We provide top-notch service at
+            the most competitive prices.
           </p>
+          <h3 className="text-2xl text-[#2E709E] font-semibold">
+            What Sets Us Apart:
+          </h3>
           <ul className="text-gray-600 space-y-2 text-base">
             <li>
-              <strong>Reliability:</strong> The taxi service will be dependable
-              and arrive on time.
+              <strong>Reliability:</strong> Our taxi service is dependable and
+              alwayss arrives on time
             </li>
             <li>
-              <span className="text-[#2E709E] font-semibold">• Safety:</span>{" "}
-              Nainaa Cabs will have a clean and well-maintained fleet of
-              vehicles and experienced drivers.
+              <span className="text-[#2E709E] font-semibold">• Safety:</span> We
+              maintain a clean, well-kept fleet with experienced and
+              professional drivers.
             </li>
             <li>
               <span className="text-[#2E709E] font-semibold">
                 • Affordability:
               </span>{" "}
-              Nainaa Cabs will offer competitive pricing and transparent rates.
+              We offer competitive pricing with clear, transparent rates.
             </li>
             <li>
               <span className="text-[#2E709E] font-semibold">
                 • Convenience:
               </span>{" "}
-              Nainaa Cabs will be available when you need it, and you should be
-              able to book a ride easily.
+              Our cabs are available when you need them, and booking a ride is
+              quick and easy
             </li>
           </ul>
         </div>
