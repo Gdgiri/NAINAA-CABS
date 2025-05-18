@@ -19,7 +19,7 @@ const BookingConfirmation = () => {
       setData((pre) => ({ ...pre, ...e }));
       const response = await AxiosService.post("/api/bookingreview/create", e);
 
-      if (response.status == 201) {
+      if (response?.status == 201) {
         toast.success(response?.data?.message);
         navigate("/bookings");
       }
@@ -27,6 +27,9 @@ const BookingConfirmation = () => {
       // console.log(data);
     } catch (error) {
       console.error("Error fetching coordinates:", error);
+      if (error?.response?.status == 401 || error?.response?.status == 403) {
+        navigate("/auth");
+      }
     } finally {
       setBookLoad(false);
     }
