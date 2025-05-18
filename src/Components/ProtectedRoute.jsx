@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
       console.log(error);
     }
   };
-  const token = sessionStorage.getItem("token");
+  const token = sessionStorage?.getItem("token");
 
   verify();
 

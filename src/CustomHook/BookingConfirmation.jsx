@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const BookingConfirmation = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = React.useState(false);
+  const [bookLoad, setBookLoad] = useState(false);
   const [reviewLoading, setReviewLoading] = useState(false);
   const [data, setData] = useState(null);
   const [reviewData, setReviewData] = useState(null);
@@ -14,7 +15,7 @@ const BookingConfirmation = () => {
 
   const handleSubmit = async (e) => {
     try {
-      setLoading(true);
+      setBookLoad(true);
       setData((pre) => ({ ...pre, ...e }));
       const response = await AxiosService.post("/api/bookingreview/create", e);
 
@@ -27,7 +28,7 @@ const BookingConfirmation = () => {
     } catch (error) {
       console.error("Error fetching coordinates:", error);
     } finally {
-      setLoading(false);
+      setBookLoad(false);
     }
   };
 
@@ -144,6 +145,7 @@ const BookingConfirmation = () => {
 
   return {
     loading,
+    bookLoad,
     handleSubmit,
     data,
     getBookings,

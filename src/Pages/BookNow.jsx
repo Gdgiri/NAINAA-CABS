@@ -21,7 +21,7 @@ const BookNow = () => {
   const [pickupCoords, setPickupCoords] = useState(null);
   const [dropCoords, setDropCoords] = useState(null);
   const [fare, setFare] = useState(null);
-  const { handleSubmit, loading } = bookConfirm();
+  const { handleSubmit, bookLoad } = bookConfirm();
 
   const datas = {
     name,
@@ -368,12 +368,12 @@ const BookNow = () => {
                 <button
                   type="submit"
                   className={`book px-8 py-2 bg-[#2E709E] mx-auto text-white font-semibold rounded-full hover:bg-blue-900 flex justify-center items-center ${
-                    loading
+                    bookLoad
                       ? "bg-gray-400 cursor-not-allowed"
                       : "bg-[#2E709E] hover:bg-[#378dca]"
                   }`}
                 >
-                  {loading ? (
+                  {bookLoad ? (
                     <img
                       src={wheelImg}
                       alt="Spinning Wheel"
