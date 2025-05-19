@@ -136,84 +136,92 @@ const Home = () => {
             </tr>
           </thead>
           <tbody className="text-center">
-            {currentBookings?.map((row, index) => (
-              <tr
-                key={index}
-                className="border-t cursor-pointer hover:bg-gray-100 "
-                onClick={() => handleRowClick(row)}
-              >
-                <td className="px-4 py-3 hidden sm:table-cell">
-                  {(currentPage - 1) * bookingsPerPage + index + 1}
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap">
-                  <div className="leading-tight">
-                    <div className="font-medium">{row.name}</div>
-                    <div className="text-[#2E709E] text-xs">{row.mobile}</div>
-                  </div>
-                </td>
-                <td
-                  className={`px-4 py-3 hidden sm:table-cell ${
-                   row?.status == "confirmed" || row?.status == "pending"
-                      ? "text-red-500"
-                      : "text-green-500"
-                  }`}
+            {currentBookings && currentBookings.length > 0 ? (
+              currentBookings?.map((row, index) => (
+                <tr
+                  key={index}
+                  className="border-t cursor-pointer hover:bg-gray-100 "
+                  onClick={() => handleRowClick(row)}
                 >
-                  {row?.status == "confirmed" || row?.status == "pending"
-                    ? "pending"
-                    : "completed"}
-                </td>
-                <td className="px-4 py-3 hidden sm:table-cell text-center">
-                  <span className="text-[#2E709E] font-semibold">
-                    {row?.bookingDate?.slice(0, 10)}
-                  </span>
-                </td>
-                <td className="px-4 py-3 hidden sm:table-cell">
-                  {row?.pickupLocation?.length > 20
-                    ? row.pickupLocation.slice(0, 20) + "..."
-                    : row.pickupLocation}
-                </td>
-                <td className="px-4 py-3 hidden sm:table-cell">
-                  {row?.dropLocation?.length > 20
-                    ? row.dropLocation.slice(0, 20) + "..."
-                    : row.dropLocation}
-                </td>
-                <td className="px-4 py-3 hidden sm:table-cell text-center">
-                  ₹
-                  <span className="text-[#2E709E]  font-semibold">
-                    {" "}
-                    {row?.totalPrice}
-                  </span>
-                </td>
-                <td className="px-4 py-3 flex justify-end sm:table-cell ">
-                  {row?.status !== "completed" ? (
-                    <div className="flex gap-6 relative md:left-10">
-                      <button
-                        className="w-6 h-6 flex items-center justify-center rounded-full bg-green-100 text-green-600 hover:bg-green-200 transition "
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleApprove(row?._id);
-                        }}
-                        disabled={confirmLoading}
-                      >
-                        ✔
-                      </button>
-                      <button
-                        className="w-6 h-6 flex items-center justify-center rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleReject(row?._id);
-                        }}
-                        disabled={loading}
-                      >
-                        ✖
-                      </button>
+                  <td className="px-4 py-3 hidden sm:table-cell">
+                    {(currentPage - 1) * bookingsPerPage + index + 1}
+                  </td>
+                  <td className="px-4 py-3 whitespace-nowrap">
+                    <div className="leading-tight">
+                      <div className="font-medium">{row.name}</div>
+                      <div className="text-[#2E709E] text-xs">{row.mobile}</div>
                     </div>
-                  ) : (
-                    "-"
-                  )}
+                  </td>
+                  <td
+                    className={`px-4 py-3 hidden sm:table-cell ${
+                      row?.status == "confirmed" || row?.status == "pending"
+                        ? "text-red-500"
+                        : "text-green-500"
+                    }`}
+                  >
+                    {row?.status == "confirmed" || row?.status == "pending"
+                      ? "pending"
+                      : "completed"}
+                  </td>
+                  <td className="px-4 py-3 hidden sm:table-cell text-center">
+                    <span className="text-[#2E709E] font-semibold">
+                      {row?.bookingDate?.slice(0, 10)}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 hidden sm:table-cell">
+                    {row?.pickupLocation?.length > 20
+                      ? row.pickupLocation.slice(0, 20) + "..."
+                      : row.pickupLocation}
+                  </td>
+                  <td className="px-4 py-3 hidden sm:table-cell">
+                    {row?.dropLocation?.length > 20
+                      ? row.dropLocation.slice(0, 20) + "..."
+                      : row.dropLocation}
+                  </td>
+                  <td className="px-4 py-3 hidden sm:table-cell text-center">
+                    ₹
+                    <span className="text-[#2E709E]  font-semibold">
+                      {" "}
+                      {row?.totalPrice}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 flex justify-end sm:table-cell ">
+                    {row?.status !== "completed" ? (
+                      <div className="flex gap-6 relative md:left-10">
+                        <button
+                          className="w-6 h-6 flex items-center justify-center rounded-full bg-green-100 text-green-600 hover:bg-green-200 transition "
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleApprove(row?._id);
+                          }}
+                          disabled={confirmLoading}
+                        >
+                          ✔
+                        </button>
+                        <button
+                          className="w-6 h-6 flex items-center justify-center rounded-full bg-red-100 text-red-600 hover:bg-red-200 transition"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleReject(row?._id);
+                          }}
+                          disabled={loading}
+                        >
+                          ✖
+                        </button>
+                      </div>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={10} className="text-center py-4">
+                  No bookings to show
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
 
