@@ -8,7 +8,7 @@ const Pricing = () => {
       <h2 className="text-4xl md:text-5xl font-semibold text-center text-[#2E709E] mb-1">
         Our Pricing
       </h2>
-      <div className="h-1 w-72 bg-orange-500 mx-auto mb-10 rounded"></div>
+      <div className="h-1 w-52 md:w-72 bg-orange-500 mx-auto mb-10 rounded"></div>
 
       {/* Row with both cards */}
       <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-10">

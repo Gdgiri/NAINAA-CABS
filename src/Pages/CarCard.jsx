@@ -191,7 +191,7 @@ export default function CarCard() {
           <h2 className="text-[#2E709E] text-4xl md:text-5xl lg:text-5xl font-bold">
             Our Cars
           </h2>
-          <div className="h-1 w-52 bg-[#E6A43B] mx-auto my-4 rounded"></div>
+          <div className="h-1 w-42 md:w-52 bg-[#E6A43B] mx-auto my-4 rounded"></div>
         </div>
         <div className="w-1 h-20 bg-[#E6A43B] rounded vertical-line"></div>
         {/* Section */}

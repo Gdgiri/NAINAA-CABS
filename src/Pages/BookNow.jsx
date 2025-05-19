@@ -168,7 +168,7 @@ const BookNow = () => {
         <h2 className="text-4xl md:text-5xl font-semibold text-[#2E709E] ">
           Book Now
         </h2>
-        <div className="w-64 h-1 mx-auto mt-2 bg-[#E6A43B] rounded-full"></div>
+        <div className="w-44 md:w-64 h-1 mx-auto mt-2 bg-[#E6A43B] rounded-full"></div>
       </div>
 
       <div

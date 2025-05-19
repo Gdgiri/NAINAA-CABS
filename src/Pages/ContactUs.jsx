@@ -36,15 +36,15 @@ const ContactUs = () => {
   });
 
   return (
-    <section id="contact" className="relative bottom-8">
-      <div className="text-center z-20 relative bottom-6">
+    <section id="contact" className="relative bottom-8 ">
+      <div className="text-center z-20 relative bottom-6 ">
         <h2 className="text-4xl md:text-5xl font-semibold text-[#2E709E]">
           Contact Us
         </h2>
-        <div className="w-72 h-1 mx-auto mt-2 bg-[#E6A43B] rounded-full"></div>
+        <div className="w-48 md:w-72 h-1 mx-auto mt-2 bg-[#E6A43B] rounded-full"></div>
 
         <div className="min-h-screen flex items-center justify-center px-4">
-          <div className="bg-white shadow-md rounded-lg max-w-5xl w-full flex flex-col md:flex-row overflow-hidden">
+          <div className="bg-white shadow-md rounded-lg max-w-5xl w-full flex flex-col md:flex-row overflow-hidden mb-24 md:mb-2">
             {/* Left: Contact Form */}
             <div className="w-full md:w-1/2 p-8 mb-24">
               <h2 className="text-center text-xl font-semibold text-[#2E709E] mb-2">

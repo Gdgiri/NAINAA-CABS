@@ -5,9 +5,7 @@ import { IoCarSportOutline } from "react-icons/io5";
 import { SlBadge } from "react-icons/sl";
 import herocar from "../assets/herocar.png";
 
-
 const HeroSection = () => {
-  
   return (
     <section id="home" className="relative">
       <div className="relative bg-white overflow-hidden min-h-screen flex items-center justify-center mt-24">
@@ -16,9 +14,11 @@ const HeroSection = () => {
             {/* Left Content */}
             <div className="md:ml-1">
               <h1 className="text-6xl font-bold text-[#2E709e] mb-4 start">
-                "Roads Awaits. let's <br />
+                "Roads Awaits. let's{" "}
+                <span className="inline md:hidden">Explore</span> <br />
                 <span className="text-[#2E709e]">
-                  Explore <span className="text-[#E6A43B]">Together</span>."
+                  <span className="hidden sm:inline">Explore</span>{" "}
+                  <span className="text-[#E6A43B]">Together</span>."
                 </span>
               </h1>
               <p className="text-[#2E709e] mb-6 mt-12 text-xl font-semibold">
