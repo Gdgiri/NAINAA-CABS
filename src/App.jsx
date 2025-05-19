@@ -27,6 +27,7 @@ import AdminNav from "./Components/AdminNav";
 import Earning from "./Pages/Earning";
 import WheelSpinner from "./Components/WheelSpinner";
 import AdminProtectedRoute from "./Components/AdminProtectedRoute";
+import WhatsAppButton from "./Components/WhatsAppButton";
 
 const App = () => {
   const location = useLocation();
@@ -101,6 +102,7 @@ const App = () => {
           <ContactUs />
           <Footer />
           <ScrollToTopButton />
+          <WhatsAppButton />
         </>
       )}
     </div>

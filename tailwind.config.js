@@ -6,6 +6,7 @@ export default {
       animation: {
         spinSlow: "spin 2s linear infinite",
         spinFast: "spin 0.5s linear infinite",
+        
       },
     },
   },
