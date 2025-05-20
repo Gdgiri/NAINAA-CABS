@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { IoCall } from "react-icons/io5";
 
 const ContactButtons = () => {
-  const phoneNumber = "919715424895"; // Your phone number with country code
+  const phoneNumber = "918807718563"; // Your phone number with country code
   const message = "Hello, can I get a fare estimate?";
 
   const [isWhatsAppBouncing, setIsWhatsAppBouncing] = useState(false);
