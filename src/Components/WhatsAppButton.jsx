@@ -25,7 +25,7 @@ const ContactButtons = () => {
       <a
         href={`tel:+${phoneNumber}`}
         onClick={handleCallClick}
-        className={`bg-blue-600 hover:bg-blue-700 rounded-full w-12 h-12 flex items-center justify-center shadow-xl transition-transform duration-300 hover:scale-110 ${
+        className={`bg-[#2E709E] hover:bg-[#0f7fcf] rounded-full w-12 h-12 flex items-center justify-center shadow-xl transition-transform duration-300 hover:scale-110 ${
           isCallBouncing ? "animate-bounce" : ""
         }`}
         title="Call us"
