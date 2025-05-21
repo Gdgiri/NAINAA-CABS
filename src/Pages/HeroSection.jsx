@@ -1,11 +1,13 @@
 // components/CarRentalBanner.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Pages/HeroSection.css";
 import { IoCarSportOutline } from "react-icons/io5";
 import { SlBadge } from "react-icons/sl";
 import herocar from "../assets/herocar.png";
 
+
 const HeroSection = () => {
+
   return (
     <section id="home" className="relative">
       <div className="relative bg-white overflow-hidden min-h-screen flex items-center justify-center mt-24">
@@ -22,9 +24,10 @@ const HeroSection = () => {
                 </span>
               </h1>
               <p className="text-[#2E709e] mb-6 mt-12 text-xl font-semibold">
-                Whether you're planning a road trip, need a reliable vehicle for
-                a business trip, or just want the convenience of having a car at
-                your disposal, we've got you covered.
+                The Road Awaits – Ride in Premium Comfort Planning a road trip?
+                Heading out for a business meeting? Or just want the a smooth
+                ride without the hassle? Book our premium cabs at unbelievably
+                affordable prices.
               </p>
               <a href="#booknow">
                 <button className="bg-[#e6a43b] hover:bg-red-600 text-white font-semibold py-2 px-6 rounded shadow-md book mt-12">
