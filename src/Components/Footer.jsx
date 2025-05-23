@@ -79,8 +79,10 @@ const Footer = () => {
           <p className="text-sm">21/A, Raghavendrapuram, </p>
           <p className="text-sm">Srirangam, Thiruchirapalli,</p>
           <p className="text-sm">India, Tamilnadu.</p>
-          <p className="text-sm mt-2">Phone: +91 88077 18563</p>
-          <p className="text-sm md:ml-[47px]">+91 93600 55963</p>
+          <p className="text-sm mt-2">Phone: +91 93600 55963</p>
+          <p className="text-sm md:ml-[50px]">
+            +91 88077 <span className="md:ml-[4px]">15963</span>
+          </p>
 
           {/* Social Icons */}
           <div className="flex gap-3 mt-5 justify-center md:justify-start">

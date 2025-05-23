@@ -28,8 +28,10 @@ const About = () => {
           </h3>
           <ul className="text-gray-600 space-y-2 text-base">
             <li>
-              <strong>Reliability:</strong> Our taxi service is dependable and
-              alwayss arrives on time
+              <strong className="text-[#2E709E] font-semibold">
+                • Reliability:
+              </strong>{" "}
+              Our taxi service is dependable and alwayss arrives on time
             </li>
             <li>
               <span className="text-[#2E709E] font-semibold">• Safety:</span> We

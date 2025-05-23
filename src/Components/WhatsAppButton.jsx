@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { IoCall } from "react-icons/io5";
 
 const ContactButtons = () => {
-  const phoneNumber = "88077 15963"; // Your phone number with country code
-  const message = "Hello, can I get a fare estimate?";
+  const phoneNumber = "93600 55963"; // Your phone number with country code
+  const message = "Hi Nainaa Cabs";
+  const message2 = "I need more details on book my ride!";
 
   const [isWhatsAppBouncing, setIsWhatsAppBouncing] = useState(false);
   const [isCallBouncing, setIsCallBouncing] = useState(false);
@@ -40,7 +41,7 @@ const ContactButtons = () => {
       {/* WhatsApp Button */}
       <a
         href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-          message
+          `${message}\n${message2}`
         )}`}
         target="_blank"
         rel="noopener noreferrer"

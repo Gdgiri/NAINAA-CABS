@@ -103,10 +103,15 @@ const Bookings = () => {
                     <strong>Estimated Fare:</strong> {data.totalPrice}
                   </p>
                   <p className="text-red-500 text-sm">
-                    note: Price is based on entered kms and will vary if kms
-                    increase.
+                    Note: The cost is an rough estimate based on the mentioned
+                    kilometers and will vary with extra distance travelled.
                   </p>
                   <div className="flex justify-center gap-4 mt-6">
+                    {/* <label>
+                      <input type="checkbox" name="whatsappConsent" />I agree to
+                      receive booking details on WhatsApp
+                    </label> */}
+
                     <button
                       className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold shadow-md transform hover:scale-105 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                       onClick={handleCancel}
