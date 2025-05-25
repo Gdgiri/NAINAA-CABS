@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { IoCall } from "react-icons/io5";
 
 const ContactButtons = () => {
-  const phoneNumber = "93600 55963"; // Your phone number with country code
+  const phoneNumber = "91 93600 55963"; // Your phone number with country code
   const message = "Hi Nainaa Cabs";
   const message2 = "I need more details on book my ride!";
 
