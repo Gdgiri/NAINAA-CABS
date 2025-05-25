@@ -21,7 +21,7 @@ const ContactButtons = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 flex flex-col gap-4">
+    <div className="fixed bottom-20 right-7 z-50 flex flex-col gap-4 sm:right-6 md:right-6 lg:right-8">
       {/* Call Button */}
       <a
         href={`tel:+${phoneNumber}`}
@@ -33,7 +33,6 @@ const ContactButtons = () => {
         aria-label="Call us"
       >
         <span className="text-white text-xl">
-          {" "}
           <IoCall />
         </span>
       </a>
