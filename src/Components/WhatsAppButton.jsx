@@ -26,9 +26,9 @@ const ContactButtons = () => {
       <a
         href={`tel:+${phoneNumber}`}
         onClick={handleCallClick}
-        className={`bg-[#1067a4] hover:bg-[#0f7fcf] rounded-full w-12 h-12 flex items-center justify-center shadow-xl transition-transform duration-300 hover:scale-110 ${
+        className={`relative bg-[#1067a4] hover:bg-[#0f7fcf] rounded-full w-12 h-12 flex items-center justify-center shadow-xl transition-transform duration-300 hover:scale-110 ${
           isCallBouncing ? "animate-bounce" : ""
-        }`}
+        } wave-effect`}
         title="Call us"
         aria-label="Call us"
       >
@@ -45,9 +45,9 @@ const ContactButtons = () => {
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleWhatsAppClick}
-        className={`bg-green-500 hover:bg-green-600 rounded-full w-12 h-12 flex items-center justify-center shadow-xl transition-transform duration-300 hover:scale-110 ${
+        className={`relative bg-green-500 hover:bg-green-600 rounded-full w-12 h-12 flex items-center justify-center shadow-xl transition-transform duration-300 hover:scale-110 ${
           isWhatsAppBouncing ? "animate-bounce" : ""
-        }`}
+        } wave-effect`}
         title="Chat with us on WhatsApp"
         aria-label="Chat with us on WhatsApp"
       >
