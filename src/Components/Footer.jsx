@@ -9,6 +9,25 @@ import lalogo from "../assets/la.jpg";
 import logo from "../assets/logo.jpg";
 
 const Footer = () => {
+  const socialLinks = [
+    {
+      icon: FaFacebookF,
+      url: "https://www.facebook.com/profile.php?id=61576027919599",
+    },
+    {
+      icon: FaInstagram,
+      url: "https://www.instagram.com/nainaa_cabs/",
+    },
+    {
+      icon: FaWhatsapp,
+      url: "https://wa.me/919360055963",
+    },
+    {
+      icon: FaEnvelope,
+      url: "https://mail.google.com/mail/?view=cm&fs=1&to=nainaacabs@gmail.com",
+    },
+  ];
+
   return (
     <footer className="bg-[#2E709E] text-white py-10 px-6">
       <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4 text-center md:text-left">
@@ -25,7 +44,6 @@ const Footer = () => {
               <span className="text-[#E6A43B]">C</span>ABS
             </h2>
           </div>
-
           <p className="text-sm leading-relaxed">
             At Nainaa Cabs, we provide premium, comfortable and affordable Cab
             Services for every journey – driven by a passion for travel,
@@ -76,7 +94,7 @@ const Footer = () => {
         <div className="md:ml-14">
           <h3 className="font-semibold text-lg mb-3">Contact</h3>
           <p className="text-sm">Soundarrajan R</p>
-          <p className="text-sm">21/A, Raghavendrapuram, </p>
+          <p className="text-sm">21/A, Raghavendrapuram,</p>
           <p className="text-sm">Srirangam, Thiruchirapalli,</p>
           <p className="text-sm">India, Tamilnadu.</p>
           <p className="text-sm mt-2">Phone: +91 93600 55963</p>
@@ -86,17 +104,17 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex gap-3 mt-5 justify-center md:justify-start">
-            {[FaFacebookF, FaInstagram, FaWhatsapp, FaEnvelope].map(
-              (Icon, idx) => (
-                <a
-                  key={idx}
-                  href="#"
-                  className="bg-white text-[#2E709E] p-2 rounded-full hover:scale-105 transition-transform"
-                >
-                  <Icon />
-                </a>
-              )
-            )}
+            {socialLinks.map(({ icon: Icon, url }, idx) => (
+              <a
+                key={idx}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white text-[#2E709E] p-2 rounded-full hover:scale-105 transition-transform"
+              >
+                <Icon />
+              </a>
+            ))}
           </div>
         </div>
       </div>
