@@ -56,7 +56,7 @@ const AdminNav = () => {
           <a href="/admin">
             <img
               src={logo}
-              alt="Nainaa-logo"
+              alt="anandham-logo"
               className="h-full w-full object-cover z-10 logo-image"
             />
           </a>

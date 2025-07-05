@@ -6,7 +6,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import lalogo from "../assets/la.jpg";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/anandham.jpg";
 
 const Footer = () => {
   const socialLinks = [
@@ -29,23 +29,23 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#2E709E] text-white py-10 px-6">
-      <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-4 text-center md:text-left">
+    <footer className="bg-[#2E709E] text-white py-10 px-6 ">
+      <div className="max-w-7xl ml-14 mr-14 mx-auto grid md:grid-cols-4 text-center md:text-left">
         {/* Company Info */}
         <div>
-          <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
+          <div className="flex items-center  justify-center md:justify-start gap-4 mb-4">
             <img
               src={logo}
               alt="Nainaa Cabs"
               className="w-16 h-16 object-cover rounded-full"
             />
             <h2 className="text-2xl font-bold">
-              <span className="text-[#E6A43B]">N</span>AINAA{" "}
+              <span className="text-[#E6A43B]">A</span>NANDHAM{" "}
               <span className="text-[#E6A43B]">C</span>ABS
             </h2>
           </div>
           <p className="text-sm leading-relaxed">
-            At Nainaa Cabs, we provide premium, comfortable and affordable Cab
+            At Anandham-Cabs, we provide premium, comfortable and affordable Cab
             Services for every journey – driven by a passion for travel,
             customer satisfaction, and unmatched service quality.
           </p>

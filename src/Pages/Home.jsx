@@ -116,7 +116,7 @@ const Home = () => {
 
         <div className="mx-auto me-auto text-2xl md:text-4xl  font-semibold text-[#2E709E]">
           {" "}
-          <h1>Nainaa Cabs Booking History </h1>
+          <h1>Anandham-Cabs Booking History </h1>
         </div>
       </div>
 

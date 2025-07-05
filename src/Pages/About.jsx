@@ -14,10 +14,10 @@ const About = () => {
         {/* Left Text Content */}
         <div className="md:w-1/2 space-y-6">
           <h1 className="text-4xl font-extrabold text-[#2E709E]">
-            NAINAA CABS
+            ANANDAM-CABS
           </h1>
           <p className="text-gray-600 text-base leading-relaxed">
-            Based in Trichy, Tamil Nadu, Nainaa Cabs believes that premium
+            Based in Trichy, Tamil Nadu, Anandham Cabs believes that premium
             travel should be accessible to everyone - which is why we offer a
             high-quality travel experience at an affordable cost. Whether you
             need a one-way ride or a round-trip. We provide top-notch service at

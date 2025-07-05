@@ -21,13 +21,13 @@ const AdminFooter = () => {
               className="w-16 h-16 object-cover rounded-full"
             />
             <h2 className="text-2xl font-bold">
-              <span className="text-[#E6A43B]">N</span>AINAA{" "}
+              <span className="text-[#E6A43B]">A</span>NANDHAM{" "}
               <span className="text-[#E6A43B]">C</span>ABS
             </h2>
           </div>
 
           <p className="text-sm leading-relaxed">
-            At Nainaa Cabs, we provide premium, comfortable and affordable Cab
+            At Anandham-Cabs, we provide premium, comfortable and affordable Cab
             Services for every journey – driven by a passion for travel,
             customer satisfaction, and unmatched service quality.
           </p>
